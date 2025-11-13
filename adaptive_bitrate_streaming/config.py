@@ -40,7 +40,7 @@ class Config:
             'xl': 1600,
         },
         'llama': {
-            'base': 4096,
+            'base': 2048,
         },
         't5-lm': {
             'base': 768,

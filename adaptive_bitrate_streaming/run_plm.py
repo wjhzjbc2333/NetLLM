@@ -22,7 +22,7 @@ from plm_special.models.rl_policy import OfflineRLPolicy
 from plm_special.models.state_encoder import EncoderNetwork
 from plm_special.models.low_rank import peft_model
 from plm_special.utils.utils import set_random_seed
-from plm_special.utils.plm_utils import load_plm
+from plm_special.utils.plm_utils import load_plm, load_plm_llama
 from plm_special.utils.console_logger import ConsoleLogger
 
 
@@ -172,12 +172,15 @@ def run(args):
     # For data/modules near the output side, we use args.device_out.
     # For data/modules lying in the middle, we use args.device_mid (it can be None). 
     # If args.device == args.device_out == args.device_mid (if not None), everything will be the same as using only one device.
-    plm, *_ = load_plm(args.plm_type, os.path.join(cfg.plm_dir, args.plm_type, args.plm_size), 
-                       device_input_side=args.device, device_output_side=args.device_out, device_middle_side=args.device_mid)
 
-    if args.plm_type != 'llama':
-        plm = plm.to(args.device)
-    
+    # plm, *_ = load_plm(args.plm_type, os.path.join(cfg.plm_dir, args.plm_type, args.plm_size),
+    #                    device_input_side=args.device, device_output_side=args.device_out, device_middle_side=args.device_mid)
+    # if args.plm_type != 'llama':
+    #     plm = plm.to(args.device)
+
+    plm, *_ = load_plm_llama(os.path.join(cfg.plm_dir, args.plm_type, args.plm_size))
+    plm = plm.to(args.device)
+
     if args.rank != -1:
         plm = peft_model(plm, args.plm_type, rank=args.rank)
 
@@ -242,7 +245,7 @@ if __name__ == '__main__':
     parser.add_argument('--video', help='name of video (e.g., video1)', type=str, default='video1')
     parser.add_argument('--fixed-order', action='store_true', help='iterate over test traces in a fixed sequential order.')
     # plm settings
-    parser.add_argument('--plm-type', type=str, default='gpt2')
+    parser.add_argument('--plm-type', type=str, default='llama')
     parser.add_argument('--plm-size', type=str, default='base')
     parser.add_argument('--rank', type=int, help='rank of low-rank matrices. if set to -1, low-rank matrices will not be enabled', default=-1)
     # state encoder settings
@@ -264,7 +267,7 @@ if __name__ == '__main__':
     parser.add_argument('--grad-accum-steps', dest='grad_accum_steps', type=int, default=32)
     parser.add_argument('--seed', help='random seed', type=int, default=100003)
     parser.add_argument('--scale', help='scale reward/return', type=int, default=1000)
-    parser.add_argument('--model-dir', help='model weight dir for testing')
+    parser.add_argument('--model-dir', help='model weight dir for testing', default='models/Llama-3___2-1B-Instruct')
     parser.add_argument('--device', action='store', dest='device', help='device (cuda or cpu) to run experiment')
     parser.add_argument('--device-out', action='store', dest='device_out', help='device (cuda or cpu) to place the split of model near the output')
     parser.add_argument('--device-mid', action='store', dest='device_mid', help='device (cuda or cpu) to place the split of model between the input and output')

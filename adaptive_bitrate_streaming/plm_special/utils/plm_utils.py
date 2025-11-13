@@ -10,20 +10,20 @@ from collections import namedtuple
 from yacs.config import CfgNode
 from transformers.modeling_utils import PreTrainedModel
 from transformers.tokenization_utils import PreTrainedTokenizer
-from transformers import BertConfig, BertTokenizer, BertLMHeadModel,\
-                         RobertaConfig, RobertaTokenizer, RobertaForCausalLM, \
-                         AlbertTokenizer, AlbertConfig, AlbertForMaskedLM, \
-                         T5Config, T5Tokenizer, T5ForConditionalGeneration, \
-                         OpenAIGPTTokenizer, OpenAIGPTLMHeadModel, OpenAIGPTConfig, \
-                         GPT2Config, GPT2Tokenizer, \
-                         OPTConfig, \
-                         ElectraConfig, ElectraForMaskedLM, ElectraTokenizer, \
-                         GPTJConfig, GPTJForCausalLM, \
-                         LlamaConfig, LlamaTokenizer, LlamaModel, LlamaTokenizerFast, \
-                         MistralConfig
+from transformers import BertConfig, BertTokenizer, BertLMHeadModel, \
+    RobertaConfig, RobertaTokenizer, RobertaForCausalLM, \
+    AlbertTokenizer, AlbertConfig, AlbertForMaskedLM, \
+    T5Config, T5Tokenizer, T5ForConditionalGeneration, \
+    OpenAIGPTTokenizer, OpenAIGPTLMHeadModel, OpenAIGPTConfig, \
+    GPT2Config, GPT2Tokenizer, \
+    OPTConfig, \
+    ElectraConfig, ElectraForMaskedLM, ElectraTokenizer, \
+    GPTJConfig, GPTJForCausalLM, \
+    LlamaConfig, LlamaTokenizer, LlamaModel, LlamaTokenizerFast, \
+    MistralConfig, AutoTokenizer
 
 from plm_special.models.gpt2 import GPT2Model
-from plm_special.models.llama import LlamaModel
+#from plm_special.models.llama import LlamaModel
 from plm_special.models.mistral import MistralModel
 from plm_special.models.opt import OPTModel
 from plm_special.models.t5 import T5Model
@@ -189,6 +189,22 @@ def load_plm_from_config(config: CfgNode):
     model, tokenizer = add_special_tokens(model, tokenizer, specials_to_add=config.plm.specials_to_add)
     return model, tokenizer, model_config
 
+def load_plm_llama(model_path):
+    pad_token = '[PAD]'
+
+    model_config = LlamaConfig.from_pretrained(model_path)
+    #model_config.num_hidden_layers = 32
+    model_config.output_hidden_states = True
+    model_config.output_attentions = True
+
+    tokenizer = AutoTokenizer.from_pretrained(model_path)
+    tokenizer.add_special_tokens({'pad_token': pad_token})
+    tokenizer.pad_token = pad_token
+
+    model = LlamaModel.from_pretrained(model_path, config=model_config)
+    model.resize_token_embeddings(len(tokenizer))
+
+    return model, tokenizer, model_config
 
 def add_special_tokens(model: PreTrainedModel,
                        tokenizer: PreTrainedTokenizer,
