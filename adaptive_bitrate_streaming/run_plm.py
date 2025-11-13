@@ -267,7 +267,7 @@ if __name__ == '__main__':
     parser.add_argument('--grad-accum-steps', dest='grad_accum_steps', type=int, default=32)
     parser.add_argument('--seed', help='random seed', type=int, default=100003)
     parser.add_argument('--scale', help='scale reward/return', type=int, default=1000)
-    parser.add_argument('--model-dir', help='model weight dir for testing', default='models/Llama-3___2-1B-Instruct')
+    parser.add_argument('--model-dir', help='model weight dir for testing')
     parser.add_argument('--device', action='store', dest='device', help='device (cuda or cpu) to run experiment')
     parser.add_argument('--device-out', action='store', dest='device_out', help='device (cuda or cpu) to place the split of model near the output')
     parser.add_argument('--device-mid', action='store', dest='device_mid', help='device (cuda or cpu) to place the split of model between the input and output')

@@ -1,4 +1,19 @@
-import torch
+import torch.nn as nn
+from plm_special.utils.plm_utils import load_plm_llama
 
-print(torch.cuda.is_available()) # 检查 CUDA 是否可用
-print(torch.cuda.device_count()) # 查看可用 GPU 数量
+
+class ABRLLM(nn.Module):
+    def __init__(self, args):
+        super().__init__()
+        self.args = args
+
+        #load llm&tokenizer
+        self.llm_model, self.tokenizer, self.llm_model_config = load_plm_llama(args)
+
+        #frozen llm
+        if args.frozen:
+            for param in self.llm_model.parameters():
+                param.requires_grad = False
+
+
+    def forward(self):
