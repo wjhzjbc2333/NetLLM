@@ -1,0 +1,15 @@
+python run_plm.py --test \
+                  --grad-accum-steps 32 \
+                  --seed 666 \
+                  --plm-type llama \
+                  --plm-size base \
+                  --rank 128 \
+                  --device cuda:0 \
+                  --state-feature-dim 256 \
+                  --w 20 \
+                  --gamma 1. \
+                  --lr 0.0001 \
+                  --warmup-steps 2000 \
+                  --num-epochs 80 \
+                  --eval-per-epoch 2 \
+                  --target-return-scale 1

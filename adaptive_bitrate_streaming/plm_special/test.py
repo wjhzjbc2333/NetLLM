@@ -110,5 +110,20 @@ def test_on_env(args, model, results_dir, env_settings, target_return, max_ep_nu
                                   str(smoothness) + '\t' +
                                   str(reward) + '\n' )
             result_file.close()
-    test_log['mean_reward'] = calc_mean_reward(result_files=os.listdir(results_dir), test_dir=results_dir, str='', skip_first_reward=True)
+    # Calculate QoE metrics
+    # QoE = reward = video quality - rebuffer penalty - smoothness penalty
+    mean_qoe = calc_mean_reward(result_files=os.listdir(results_dir), test_dir=results_dir, str='', skip_first_reward=True)
+    # Total QoE across all episodes
+    total_qoe = episodes_return
+    # Average QoE per chunk
+    mean_qoe_per_chunk = episodes_return / episodes_len if episodes_len > 0 else 0.0
+    
+    test_log.update({
+        'mean_reward': mean_qoe,  # For backward compatibility
+        'mean_qoe': mean_qoe,  # Average QoE per chunk (from result files)
+        'total_qoe': total_qoe,  # Total QoE across all episodes
+        'mean_qoe_per_chunk': mean_qoe_per_chunk,  # Average QoE per chunk (calculated directly)
+        'episodes_count': ep_count,  # Number of episodes
+        'total_chunks': episodes_len,  # Total number of chunks
+    })
     return test_log

@@ -5,7 +5,8 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 from collections import deque
-    
+from baseline_special.utils.constants import BITRATE_LEVELS
+from transformers import AutoTokenizer
 
 INF = 1e5
 

@@ -194,9 +194,7 @@ def run(args):
     max_ep_len = exp_dataset_info.max_timestep + 1
     rl_policy = OfflineRLPolicy(state_feature_dim=args.state_feature_dim, bitrate_levels=BITRATE_LEVELS, state_encoder=state_encoder, plm=plm, plm_embed_size=plm_embed_size, 
                                            max_length=args.w, max_ep_len=max_ep_len, device=args.device, device_out=args.device_out, which_layer=args.which_layer)
-
     # 5. handling directory and path
-
     # extract training experience pool information
     train_exp_pool_info = args.exp_pool_path.split('/')[-4:-1]
     train_exp_pool_info = '_'.join(train_exp_pool_info)

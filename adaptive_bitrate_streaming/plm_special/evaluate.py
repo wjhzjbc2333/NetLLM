@@ -73,9 +73,18 @@ def evaluate_on_env(args, env_settings, model, target_return, max_ep_num=50, pro
                 if ep_count >= max_ep_num:
                     break
     
+    # Calculate QoE metrics
+    # QoE = reward = video quality - rebuffer penalty - smoothness penalty
+    # Average QoE per chunk
+    mean_qoe = episodes_return / episodes_len if episodes_len > 0 else 0.0
+    # Total QoE across all episodes
+    total_qoe = episodes_return
+    
     eval_log.update({
         'time/evaluation': time.time() - eval_start,
         'episodes_return': episodes_return,
         'episodes_len': episodes_len,
+        'mean_qoe': mean_qoe,  # Average QoE per chunk
+        'total_qoe': total_qoe,  # Total QoE across all episodes
     })
     return eval_log
