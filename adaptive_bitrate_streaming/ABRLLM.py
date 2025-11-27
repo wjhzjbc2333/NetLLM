@@ -38,6 +38,8 @@ class ABRLLM(nn.Module):
         self.state_attn_hidden_dim = args.state_attn_hidden_dim
         self.fusion_method = args.fusion_method
 
+        #self.data_description = "Input sequence: [instruction, (return, state, action) for each timestep]. State: last bitrate, buffer size, past throughput, past download time, next chunk sizes, remaining chunks. Action: bitrate level (0-5). Return: cumulative reward."
+        #self.task_description = "Predict bitrate level (0-5) for next chunk to maximize QoE."
         self.data_description = "The data is a sequence of network states for adaptive bitrate streaming. Each state consists of six features: last bitrate, current buffer size, past k throughput measurements, past k download times, next chunk sizes for different bitrates, and remaining chunks to download."
         self.task_description = "Based on the given network states, predict the optimal bitrate level for the next video chunk to maximize user Quality of Experience (QoE) by balancing video quality, rebuffering events, and smoothness of playback."
         self.max_length = args.max_length
@@ -118,6 +120,7 @@ class ABRLLM(nn.Module):
         timesteps = timesteps.to(self.device).long()  # shape: (batch_size, seq_len), dtype: int64 (for Embedding)
         
         # Prepare instruction
+        #TODO: fix instruction content
         instruction = (
             f"<|start_prompt|>Data description: {self.data_description}"
             f" Task description: {self.task_description} "
@@ -160,6 +163,9 @@ class ABRLLM(nn.Module):
         # Note: All embeddings are in float32 for consistency with LoRA layers
         concated_embeddings = [instruction_embeddings]  # LLM embeddings are float32
         
+        #test without prefix prompt
+        #concated_embeddings = []
+
         # Stack returns, states, actions for each timestep
         batch_size, seq_len = states.shape[0], states.shape[1]
         for i in range(seq_len):
@@ -592,9 +598,18 @@ class AlignmentLayer(nn.Module):
         return cross_attn_embeddings # (batch_size, seq_len, num_heads, head_dim)
 
 if __name__ == "__main__":
-    exp_pool = pickle.load(open('artifacts/exp_pools/exp_pool.pkl', 'rb'))
-    exp_dataset = ExperienceDataset(exp_pool, gamma=1., scale=1000, max_length=20, sample_step=None)
-    exp_dataset_info = Munch(exp_dataset.exp_dataset_info)
-    print('Experience dataset info:')
-    pprint(exp_dataset_info)
-    print(len(exp_pool))
+    #Print Pickle files
+    with open('artifacts/exp_pools/exp_pool.pkl', 'rb') as f:
+        exp_pool = pickle.load(f)
+    print(dir(exp_pool))
+    print("经验池大小:", len(exp_pool.states))
+    # print("动作:", len(exp_pool.actions))
+    # 打印前 5 条经验（假设每个字段是列表）
+    for i in range(50):
+        print(f"经验 {i+1}:")
+        print("状态:", exp_pool.states[i])
+        print("动作:", exp_pool.actions[i])
+        print("奖励:", exp_pool.rewards[i])
+        print("是否结束:", exp_pool.dones[i])
+        print("-" * 40)
+    

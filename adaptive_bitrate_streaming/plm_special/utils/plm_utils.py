@@ -20,7 +20,9 @@ from transformers import BertConfig, BertTokenizer, BertLMHeadModel, \
     ElectraConfig, ElectraForMaskedLM, ElectraTokenizer, \
     GPTJConfig, GPTJForCausalLM, \
     LlamaConfig, LlamaTokenizer, LlamaModel, LlamaTokenizerFast, \
-    MistralConfig, AutoTokenizer
+    MistralConfig, \
+    AutoTokenizer, \
+    Qwen3Config, Qwen3Model
 
 from plm_special.models.gpt2 import GPT2Model
 #from plm_special.models.llama import LlamaModel
@@ -204,6 +206,14 @@ def load_plm_llama(model_path):
     model = LlamaModel.from_pretrained(model_path, config=model_config)
     model.resize_token_embeddings(len(tokenizer))
 
+    return model, tokenizer, model_config
+
+def load_plm_qwen3(model_path):
+    model_config = Qwen3Config.from_pretrained(model_path)
+    model_config.output_hidden_states = True
+    model_config.output_attentions = True
+    tokenizer = AutoTokenizer.from_pretrained(model_path)
+    model = Qwen3Model.from_pretrained(model_path, config=model_config)
     return model, tokenizer, model_config
 
 def add_special_tokens(model: PreTrainedModel,

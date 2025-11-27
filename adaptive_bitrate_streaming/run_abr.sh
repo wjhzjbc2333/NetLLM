@@ -1,11 +1,12 @@
-python run_abr.py --test \
+python run_abr.py --adapt\
+                  --test \
                   --frozen \
                   --state-use-self-attention \
                   --grad-accum-steps 32 \
                   --seed 666 \
                   --plm-type llama \
-                  --plm-size base \
-                  --rank 64 \
+                  --plm-size large \
+                  --rank 128 \
                   --device cuda:0 \
                   --state-feature-dim 256 \
                   --w 20 \
@@ -14,4 +15,5 @@ python run_abr.py --test \
                   --warmup-steps 2000 \
                   --num-epochs 80 \
                   --eval-per-epoch 2 \
-                  --target-return-scale 1
+                  --target-return-scale 1 \
+                  --num-epochs 80 \

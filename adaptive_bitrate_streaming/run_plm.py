@@ -256,7 +256,7 @@ if __name__ == '__main__':
     parser.add_argument('--warmup-steps', type=int, default=2000)
     parser.add_argument('--num-epochs', type=int, default=80)
     parser.add_argument('--eval-per-epoch', type=int, help='evaluation per epoch', default=1)
-    parser.add_argument('--save-checkpoint-per-epoch', type=int, help='saving checkpoint per iteration')
+    parser.add_argument('--save-checkpoint-per-epoch', type=int, help='saving checkpoint per iteration', default=10)
     parser.add_argument('--target-return-scale', type=float, help='target return, which specifies the expected performance for the model to achieve', default=1.)
     parser.add_argument('--which-layer', type=int, help='for early stopping (not used in our experiments): specify which layer to stop (layer index starts from 0)', default=-1)
     # other settings

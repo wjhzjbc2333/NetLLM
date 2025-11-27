@@ -1,8 +1,9 @@
-python run_plm.py --test \
+python run_plm.py --adapt \
+                  --test \
                   --grad-accum-steps 32 \
                   --seed 666 \
                   --plm-type llama \
-                  --plm-size base \
+                  --plm-size large \
                   --rank 128 \
                   --device cuda:0 \
                   --state-feature-dim 256 \

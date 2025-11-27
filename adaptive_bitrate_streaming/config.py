@@ -41,6 +41,8 @@ class Config:
         },
         'llama': {
             'base': 2048,
+            'large': 3072,
+            'xl': 4096
         },
         't5-lm': {
             'base': 768,
@@ -71,6 +73,8 @@ class Config:
         },
         'llama': {
             'base': 32,
+            'large': 32,
+            'xl': 32
         },
         't5-lm': { 
             'base': 12,

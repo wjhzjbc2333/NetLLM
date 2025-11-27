@@ -22,7 +22,7 @@ from plm_special.models.low_rank import peft_model
 from plm_special.utils.utils import set_random_seed
 from plm_special.utils.plm_utils import load_plm_llama
 from plm_special.utils.console_logger import ConsoleLogger
-from test import ABRLLM
+from ABRLLM_v2 import ABRLLM
 
 def save_model(args, model, save_dir):
     if args.rank > 0:
@@ -245,7 +245,7 @@ if __name__ == '__main__':
     parser.add_argument('--state-embedding-dim', type=int, help='embedding dim for state encoder (defaults to state-feature-dim)', default=None)
     
     # ABRLLM specific settings
-    parser.add_argument('--frozen', action='store_true', help='freeze LLM parameters (default: True, set via --no-frozen to disable)')
+    parser.add_argument('--frozen', action='store_true', help='freeze LLM parameters')
     parser.add_argument('--num-heads', type=int, help='number of attention heads', default=8)
     parser.add_argument('--key-dim', type=int, help='key dimension for alignment layer', default=128)
     parser.add_argument('--state-use-self-attention', action='store_true', help='use self-attention for state features (default: True, set via --no-state-use-self-attention to disable)')
@@ -285,7 +285,7 @@ if __name__ == '__main__':
         args.state_embedding_dim = args.state_feature_dim
     
     if args.state_attn_hidden_dim is None:
-        args.state_attn_hidden_dim = 6 * args.state_embedding_dim
+        args.state_attn_hidden_dim = 8 * args.state_embedding_dim
     
     if args.device is None:
         args.device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
