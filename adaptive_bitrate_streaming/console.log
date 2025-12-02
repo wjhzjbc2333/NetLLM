@@ -1,0 +1,1512 @@
+Step 0 - mean train loss  2.431716
+Step 100 - mean train loss  2.579271
+Step 200 - mean train loss  2.545129
+Step 300 - mean train loss  2.555244
+Step 400 - mean train loss  2.540234
+Step 500 - mean train loss  2.536621
+Step 600 - mean train loss  2.537453
+Step 700 - mean train loss  2.542526
+Step 800 - mean train loss  2.547915
+Step 900 - mean train loss  2.546904
+==================== Training Iteration #0 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 78.63814902305603,
+ 'training/train_loss_mean': np.float64(2.5475138227144876),
+ 'training/train_loss_std': np.float64(0.3233996705938243)}
+Checkpoint saved at: data/ft_plms/llama_base/artifacts_exp_pools_ss_None/abrllm_rank_128_w_20_gamma_1.0_sfd_256_sattn_True_sahd_2048_fusion_weighted_sum_lr_0.0001_wd_0.0001_warm_2000_epochs_80_seed_666/checkpoint/0
+Best model saved at: data/ft_plms/llama_base/artifacts_exp_pools_ss_None/abrllm_rank_128_w_20_gamma_1.0_sfd_256_sattn_True_sahd_2048_fusion_weighted_sum_lr_0.0001_wd_0.0001_warm_2000_epochs_80_seed_666/best_model
+>>>>>>>>>> Evaluation Information
+{'best_return': np.float64(3.393089054680119),
+ 'episodes_len': 4700,
+ 'episodes_return': np.float64(3.393089054680119),
+ 'mean_qoe': np.float64(0.0007219338414213019),
+ 'time/evaluation': 148.18677282333374,
+ 'total_qoe': np.float64(3.393089054680119)}
+Step 0 - mean train loss  2.496789
+Step 100 - mean train loss  2.489240
+Step 200 - mean train loss  2.486626
+Step 300 - mean train loss  2.491237
+Step 400 - mean train loss  2.504317
+Step 500 - mean train loss  2.509335
+Step 600 - mean train loss  2.504492
+Step 700 - mean train loss  2.496462
+Step 800 - mean train loss  2.491582
+Step 900 - mean train loss  2.488609
+==================== Training Iteration #1 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 79.29402613639832,
+ 'training/train_loss_mean': np.float64(2.483135355763646),
+ 'training/train_loss_std': np.float64(0.31161223577023595)}
+Step 0 - mean train loss  2.432932
+Step 100 - mean train loss  2.409433
+Step 200 - mean train loss  2.410450
+Step 300 - mean train loss  2.384096
+Step 400 - mean train loss  2.364003
+Step 500 - mean train loss  2.347528
+Step 600 - mean train loss  2.320614
+Step 700 - mean train loss  2.303324
+Step 800 - mean train loss  2.278997
+Step 900 - mean train loss  2.258843
+==================== Training Iteration #2 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 76.48445463180542,
+ 'training/train_loss_mean': np.float64(2.2361227484591994),
+ 'training/train_loss_std': np.float64(0.3305145357200675)}
+Best model saved at: data/ft_plms/llama_base/artifacts_exp_pools_ss_None/abrllm_rank_128_w_20_gamma_1.0_sfd_256_sattn_True_sahd_2048_fusion_weighted_sum_lr_0.0001_wd_0.0001_warm_2000_epochs_80_seed_666/best_model
+>>>>>>>>>> Evaluation Information
+{'best_return': np.float64(3.9746196770333904),
+ 'episodes_len': 4700,
+ 'episodes_return': np.float64(3.9746196770333904),
+ 'mean_qoe': np.float64(0.0008456637610709341),
+ 'time/evaluation': 150.17250728607178,
+ 'total_qoe': np.float64(3.9746196770333904)}
+Step 0 - mean train loss  1.845623
+Step 100 - mean train loss  1.947144
+Step 200 - mean train loss  1.992304
+Step 300 - mean train loss  1.989387
+Step 400 - mean train loss  1.969586
+Step 500 - mean train loss  1.955082
+Step 600 - mean train loss  1.935718
+Step 700 - mean train loss  1.934189
+Step 800 - mean train loss  1.936098
+Step 900 - mean train loss  1.922678
+==================== Training Iteration #3 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 76.37245607376099,
+ 'training/train_loss_mean': np.float64(1.9231279520504925),
+ 'training/train_loss_std': np.float64(0.5252998233781294)}
+Step 0 - mean train loss  1.783904
+Step 100 - mean train loss  1.952063
+Step 200 - mean train loss  1.899873
+Step 300 - mean train loss  1.860163
+Step 400 - mean train loss  1.843379
+Step 500 - mean train loss  1.830229
+Step 600 - mean train loss  1.828667
+Step 700 - mean train loss  1.827391
+Step 800 - mean train loss  1.822911
+Step 900 - mean train loss  1.830261
+==================== Training Iteration #4 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 78.89256024360657,
+ 'training/train_loss_mean': np.float64(1.8260608581175286),
+ 'training/train_loss_std': np.float64(0.5765997972598388)}
+Best model saved at: data/ft_plms/llama_base/artifacts_exp_pools_ss_None/abrllm_rank_128_w_20_gamma_1.0_sfd_256_sattn_True_sahd_2048_fusion_weighted_sum_lr_0.0001_wd_0.0001_warm_2000_epochs_80_seed_666/best_model
+>>>>>>>>>> Evaluation Information
+{'best_return': np.float64(4.274142091678075),
+ 'episodes_len': 4700,
+ 'episodes_return': np.float64(4.274142091678075),
+ 'mean_qoe': np.float64(0.0009093919343995904),
+ 'time/evaluation': 148.11923909187317,
+ 'total_qoe': np.float64(4.274142091678075)}
+Step 0 - mean train loss  1.436910
+Step 100 - mean train loss  1.757398
+Step 200 - mean train loss  1.832224
+Step 300 - mean train loss  1.821611
+Step 400 - mean train loss  1.790695
+Step 500 - mean train loss  1.771706
+Step 600 - mean train loss  1.752227
+Step 700 - mean train loss  1.751764
+Step 800 - mean train loss  1.754978
+Step 900 - mean train loss  1.740798
+==================== Training Iteration #5 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 78.36246585845947,
+ 'training/train_loss_mean': np.float64(1.7436617634382592),
+ 'training/train_loss_std': np.float64(0.628903283823305)}
+Step 0 - mean train loss  1.525667
+Step 100 - mean train loss  1.785482
+Step 200 - mean train loss  1.729566
+Step 300 - mean train loss  1.687675
+Step 400 - mean train loss  1.671124
+Step 500 - mean train loss  1.658340
+Step 600 - mean train loss  1.659170
+Step 700 - mean train loss  1.657020
+Step 800 - mean train loss  1.651578
+Step 900 - mean train loss  1.663197
+==================== Training Iteration #6 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 77.33583426475525,
+ 'training/train_loss_mean': np.float64(1.6605499910422596),
+ 'training/train_loss_std': np.float64(0.6280078602749335)}
+Best model saved at: data/ft_plms/llama_base/artifacts_exp_pools_ss_None/abrllm_rank_128_w_20_gamma_1.0_sfd_256_sattn_True_sahd_2048_fusion_weighted_sum_lr_0.0001_wd_0.0001_warm_2000_epochs_80_seed_666/best_model
+>>>>>>>>>> Evaluation Information
+{'best_return': np.float64(4.317852358945282),
+ 'episodes_len': 4700,
+ 'episodes_return': np.float64(4.317852358945282),
+ 'mean_qoe': np.float64(0.0009186919912649536),
+ 'time/evaluation': 149.693217754364,
+ 'total_qoe': np.float64(4.317852358945282)}
+Step 0 - mean train loss  1.151821
+Step 100 - mean train loss  1.603604
+Step 200 - mean train loss  1.687982
+Step 300 - mean train loss  1.670448
+Step 400 - mean train loss  1.633433
+Step 500 - mean train loss  1.609721
+Step 600 - mean train loss  1.590719
+Step 700 - mean train loss  1.590368
+Step 800 - mean train loss  1.593170
+Step 900 - mean train loss  1.577777
+==================== Training Iteration #7 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 75.25070333480835,
+ 'training/train_loss_mean': np.float64(1.5838659131024257),
+ 'training/train_loss_std': np.float64(0.6539771046556435)}
+Step 0 - mean train loss  1.342137
+Step 100 - mean train loss  1.649440
+Step 200 - mean train loss  1.588168
+Step 300 - mean train loss  1.546104
+Step 400 - mean train loss  1.525142
+Step 500 - mean train loss  1.510926
+Step 600 - mean train loss  1.511674
+Step 700 - mean train loss  1.509467
+Step 800 - mean train loss  1.503850
+Step 900 - mean train loss  1.521092
+==================== Training Iteration #8 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 76.44999265670776,
+ 'training/train_loss_mean': np.float64(1.5168538532223568),
+ 'training/train_loss_std': np.float64(0.6883216740801511)}
+Best model saved at: data/ft_plms/llama_base/artifacts_exp_pools_ss_None/abrllm_rank_128_w_20_gamma_1.0_sfd_256_sattn_True_sahd_2048_fusion_weighted_sum_lr_0.0001_wd_0.0001_warm_2000_epochs_80_seed_666/best_model
+>>>>>>>>>> Evaluation Information
+{'best_return': np.float64(4.426276902221867),
+ 'episodes_len': 4700,
+ 'episodes_return': np.float64(4.426276902221867),
+ 'mean_qoe': np.float64(0.0009417610430259291),
+ 'time/evaluation': 150.1635820865631,
+ 'total_qoe': np.float64(4.426276902221867)}
+Step 0 - mean train loss  0.959027
+Step 100 - mean train loss  1.380785
+Step 200 - mean train loss  1.442925
+Step 300 - mean train loss  1.416857
+Step 400 - mean train loss  1.375852
+Step 500 - mean train loss  1.345203
+Step 600 - mean train loss  1.332335
+Step 700 - mean train loss  1.321496
+Step 800 - mean train loss  1.319485
+Step 900 - mean train loss  1.294988
+==================== Training Iteration #9 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 76.40306091308594,
+ 'training/train_loss_mean': np.float64(1.2954684911542629),
+ 'training/train_loss_std': np.float64(0.627713943811685)}
+Step 0 - mean train loss  1.068399
+Step 100 - mean train loss  1.345173
+Step 200 - mean train loss  1.192059
+Step 300 - mean train loss  1.141374
+Step 400 - mean train loss  1.117305
+Step 500 - mean train loss  1.099851
+Step 600 - mean train loss  1.083281
+Step 700 - mean train loss  1.070728
+Step 800 - mean train loss  1.052917
+Step 900 - mean train loss  1.040210
+==================== Training Iteration #10 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 76.58278369903564,
+ 'training/train_loss_mean': np.float64(1.023471584324781),
+ 'training/train_loss_std': np.float64(0.5413885143938029)}
+Checkpoint saved at: data/ft_plms/llama_base/artifacts_exp_pools_ss_None/abrllm_rank_128_w_20_gamma_1.0_sfd_256_sattn_True_sahd_2048_fusion_weighted_sum_lr_0.0001_wd_0.0001_warm_2000_epochs_80_seed_666/checkpoint/10
+Best model saved at: data/ft_plms/llama_base/artifacts_exp_pools_ss_None/abrllm_rank_128_w_20_gamma_1.0_sfd_256_sattn_True_sahd_2048_fusion_weighted_sum_lr_0.0001_wd_0.0001_warm_2000_epochs_80_seed_666/best_model
+>>>>>>>>>> Evaluation Information
+{'best_return': np.float64(4.484566411973819),
+ 'episodes_len': 4700,
+ 'episodes_return': np.float64(4.484566411973819),
+ 'mean_qoe': np.float64(0.0009541630663774082),
+ 'time/evaluation': 150.6016755104065,
+ 'total_qoe': np.float64(4.484566411973819)}
+Step 0 - mean train loss  1.159124
+Step 100 - mean train loss  0.893057
+Step 200 - mean train loss  0.909015
+Step 300 - mean train loss  0.904882
+Step 400 - mean train loss  0.883905
+Step 500 - mean train loss  0.856980
+Step 600 - mean train loss  0.839461
+Step 700 - mean train loss  0.839097
+Step 800 - mean train loss  0.839116
+Step 900 - mean train loss  0.822178
+==================== Training Iteration #11 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 78.14284038543701,
+ 'training/train_loss_mean': np.float64(0.8252718824384562),
+ 'training/train_loss_std': np.float64(0.406594888326011)}
+Step 0 - mean train loss  0.677954
+Step 100 - mean train loss  0.757482
+Step 200 - mean train loss  0.695415
+Step 300 - mean train loss  0.677913
+Step 400 - mean train loss  0.674223
+Step 500 - mean train loss  0.672109
+Step 600 - mean train loss  0.681076
+Step 700 - mean train loss  0.694546
+Step 800 - mean train loss  0.705509
+Step 900 - mean train loss  0.735839
+==================== Training Iteration #12 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 74.675616979599,
+ 'training/train_loss_mean': np.float64(0.7352757853788724),
+ 'training/train_loss_std': np.float64(0.3861138036922276)}
+Best model saved at: data/ft_plms/llama_base/artifacts_exp_pools_ss_None/abrllm_rank_128_w_20_gamma_1.0_sfd_256_sattn_True_sahd_2048_fusion_weighted_sum_lr_0.0001_wd_0.0001_warm_2000_epochs_80_seed_666/best_model
+>>>>>>>>>> Evaluation Information
+{'best_return': np.float64(4.491075945359856),
+ 'episodes_len': 4700,
+ 'episodes_return': np.float64(4.491075945359856),
+ 'mean_qoe': np.float64(0.0009555480734808204),
+ 'time/evaluation': 150.83482789993286,
+ 'total_qoe': np.float64(4.491075945359856)}
+Step 0 - mean train loss  1.098519
+Step 100 - mean train loss  0.788675
+Step 200 - mean train loss  0.738228
+Step 300 - mean train loss  0.722070
+Step 400 - mean train loss  0.690054
+Step 500 - mean train loss  0.660134
+Step 600 - mean train loss  0.654728
+Step 700 - mean train loss  0.667217
+Step 800 - mean train loss  0.664026
+Step 900 - mean train loss  0.654967
+==================== Training Iteration #13 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 75.55806064605713,
+ 'training/train_loss_mean': np.float64(0.6624177794718374),
+ 'training/train_loss_std': np.float64(0.3469401121985798)}
+Step 0 - mean train loss  0.821602
+Step 100 - mean train loss  0.632786
+Step 200 - mean train loss  0.596573
+Step 300 - mean train loss  0.607204
+Step 400 - mean train loss  0.597438
+Step 500 - mean train loss  0.626722
+Step 600 - mean train loss  0.623775
+Step 700 - mean train loss  0.629515
+Step 800 - mean train loss  0.626627
+Step 900 - mean train loss  0.619774
+==================== Training Iteration #14 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 78.47604751586914,
+ 'training/train_loss_mean': np.float64(0.6194982370193375),
+ 'training/train_loss_std': np.float64(0.33241812766147166)}
+Best model saved at: data/ft_plms/llama_base/artifacts_exp_pools_ss_None/abrllm_rank_128_w_20_gamma_1.0_sfd_256_sattn_True_sahd_2048_fusion_weighted_sum_lr_0.0001_wd_0.0001_warm_2000_epochs_80_seed_666/best_model
+>>>>>>>>>> Evaluation Information
+{'best_return': np.float64(4.500541806337797),
+ 'episodes_len': 4700,
+ 'episodes_return': np.float64(4.500541806337797),
+ 'mean_qoe': np.float64(0.0009575620864548503),
+ 'time/evaluation': 146.97705101966858,
+ 'total_qoe': np.float64(4.500541806337797)}
+Step 0 - mean train loss  0.405140
+Step 100 - mean train loss  0.544000
+Step 200 - mean train loss  0.585666
+Step 300 - mean train loss  0.572842
+Step 400 - mean train loss  0.596975
+Step 500 - mean train loss  0.585699
+Step 600 - mean train loss  0.592901
+Step 700 - mean train loss  0.600589
+Step 800 - mean train loss  0.600821
+Step 900 - mean train loss  0.592080
+==================== Training Iteration #15 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 78.13708972930908,
+ 'training/train_loss_mean': np.float64(0.5889306532810012),
+ 'training/train_loss_std': np.float64(0.3303986295325919)}
+Step 0 - mean train loss  0.546463
+Step 100 - mean train loss  0.611844
+Step 200 - mean train loss  0.581941
+Step 300 - mean train loss  0.571083
+Step 400 - mean train loss  0.562429
+Step 500 - mean train loss  0.566951
+Step 600 - mean train loss  0.565494
+Step 700 - mean train loss  0.560911
+Step 800 - mean train loss  0.552625
+Step 900 - mean train loss  0.547426
+==================== Training Iteration #16 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 76.66123700141907,
+ 'training/train_loss_mean': np.float64(0.5438383763682202),
+ 'training/train_loss_std': np.float64(0.30614151271299495)}
+Best model saved at: data/ft_plms/llama_base/artifacts_exp_pools_ss_None/abrllm_rank_128_w_20_gamma_1.0_sfd_256_sattn_True_sahd_2048_fusion_weighted_sum_lr_0.0001_wd_0.0001_warm_2000_epochs_80_seed_666/best_model
+>>>>>>>>>> Evaluation Information
+{'best_return': np.float64(4.511361269583251),
+ 'episodes_len': 4700,
+ 'episodes_return': np.float64(4.511361269583251),
+ 'mean_qoe': np.float64(0.0009598640999113299),
+ 'time/evaluation': 148.90192914009094,
+ 'total_qoe': np.float64(4.511361269583251)}
+Step 0 - mean train loss  0.844865
+Step 100 - mean train loss  0.514544
+Step 200 - mean train loss  0.517311
+Step 300 - mean train loss  0.522414
+Step 400 - mean train loss  0.523417
+Step 500 - mean train loss  0.508435
+Step 600 - mean train loss  0.524972
+Step 700 - mean train loss  0.566829
+Step 800 - mean train loss  0.571806
+Step 900 - mean train loss  0.562318
+==================== Training Iteration #17 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 76.62903451919556,
+ 'training/train_loss_mean': np.float64(0.5571631775779956),
+ 'training/train_loss_std': np.float64(0.3392178537404524)}
+Step 0 - mean train loss  0.621833
+Step 100 - mean train loss  0.691980
+Step 200 - mean train loss  0.648818
+Step 300 - mean train loss  0.649792
+Step 400 - mean train loss  0.627550
+Step 500 - mean train loss  0.681281
+Step 600 - mean train loss  0.664749
+Step 700 - mean train loss  0.648989
+Step 800 - mean train loss  0.646045
+Step 900 - mean train loss  0.638876
+==================== Training Iteration #18 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 77.68992233276367,
+ 'training/train_loss_mean': np.float64(0.6305105817208747),
+ 'training/train_loss_std': np.float64(0.36568778837818383)}
+>>>>>>>>>> Evaluation Information
+{'best_return': np.float64(4.511361269583251),
+ 'episodes_len': 4700,
+ 'episodes_return': np.float64(4.507997463625317),
+ 'mean_qoe': np.float64(0.0009591483965160249),
+ 'time/evaluation': 149.05925273895264,
+ 'total_qoe': np.float64(4.507997463625317)}
+Step 0 - mean train loss  0.356661
+Step 100 - mean train loss  0.497385
+Step 200 - mean train loss  0.518231
+Step 300 - mean train loss  0.519233
+Step 400 - mean train loss  0.546720
+Step 500 - mean train loss  0.537607
+Step 600 - mean train loss  0.554614
+Step 700 - mean train loss  0.556257
+Step 800 - mean train loss  0.557078
+Step 900 - mean train loss  0.543666
+==================== Training Iteration #19 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 78.71802020072937,
+ 'training/train_loss_mean': np.float64(0.5524162199249094),
+ 'training/train_loss_std': np.float64(0.34356865850958995)}
+Step 0 - mean train loss  0.458758
+Step 100 - mean train loss  0.561665
+Step 200 - mean train loss  0.532632
+Step 300 - mean train loss  0.543451
+Step 400 - mean train loss  0.549556
+Step 500 - mean train loss  0.559625
+Step 600 - mean train loss  0.575526
+Step 700 - mean train loss  0.572954
+Step 800 - mean train loss  0.569949
+Step 900 - mean train loss  0.566063
+==================== Training Iteration #20 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 76.84934711456299,
+ 'training/train_loss_mean': np.float64(0.5607313251863402),
+ 'training/train_loss_std': np.float64(0.3624500481289001)}
+Checkpoint saved at: data/ft_plms/llama_base/artifacts_exp_pools_ss_None/abrllm_rank_128_w_20_gamma_1.0_sfd_256_sattn_True_sahd_2048_fusion_weighted_sum_lr_0.0001_wd_0.0001_warm_2000_epochs_80_seed_666/checkpoint/20
+>>>>>>>>>> Evaluation Information
+{'best_return': np.float64(4.511361269583251),
+ 'episodes_len': 4700,
+ 'episodes_return': np.float64(4.4865473639131),
+ 'mean_qoe': np.float64(0.0009545845455134256),
+ 'time/evaluation': 149.4119098186493,
+ 'total_qoe': np.float64(4.4865473639131)}
+Step 0 - mean train loss  0.396396
+Step 100 - mean train loss  0.498014
+Step 200 - mean train loss  0.495147
+Step 300 - mean train loss  0.521922
+Step 400 - mean train loss  0.532361
+Step 500 - mean train loss  0.517749
+Step 600 - mean train loss  0.518529
+Step 700 - mean train loss  0.531065
+Step 800 - mean train loss  0.580258
+Step 900 - mean train loss  0.573994
+==================== Training Iteration #21 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 76.44660568237305,
+ 'training/train_loss_mean': np.float64(0.5845030585432941),
+ 'training/train_loss_std': np.float64(0.394729506023359)}
+Step 0 - mean train loss  0.783826
+Step 100 - mean train loss  0.719021
+Step 200 - mean train loss  0.690505
+Step 300 - mean train loss  0.649103
+Step 400 - mean train loss  0.636291
+Step 500 - mean train loss  0.675240
+Step 600 - mean train loss  0.664454
+Step 700 - mean train loss  0.652438
+Step 800 - mean train loss  0.636284
+Step 900 - mean train loss  0.645630
+==================== Training Iteration #22 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 78.24711537361145,
+ 'training/train_loss_mean': np.float64(0.6381873730822545),
+ 'training/train_loss_std': np.float64(0.40173261452826914)}
+>>>>>>>>>> Evaluation Information
+{'best_return': np.float64(4.511361269583251),
+ 'episodes_len': 4700,
+ 'episodes_return': np.float64(4.504415467718135),
+ 'mean_qoe': np.float64(0.0009583862697272628),
+ 'time/evaluation': 148.47539925575256,
+ 'total_qoe': np.float64(4.504415467718135)}
+Step 0 - mean train loss  0.319763
+Step 100 - mean train loss  0.519351
+Step 200 - mean train loss  0.541910
+Step 300 - mean train loss  0.538646
+Step 400 - mean train loss  0.568241
+Step 500 - mean train loss  0.561529
+Step 600 - mean train loss  0.589175
+Step 700 - mean train loss  0.597767
+Step 800 - mean train loss  0.615811
+Step 900 - mean train loss  0.607666
+==================== Training Iteration #23 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 78.77121877670288,
+ 'training/train_loss_mean': np.float64(0.6001322702925472),
+ 'training/train_loss_std': np.float64(0.3817046421000778)}
+Step 0 - mean train loss  0.717389
+Step 100 - mean train loss  0.563343
+Step 200 - mean train loss  0.546250
+Step 300 - mean train loss  0.547782
+Step 400 - mean train loss  0.559850
+Step 500 - mean train loss  0.609977
+Step 600 - mean train loss  0.625036
+Step 700 - mean train loss  0.620808
+Step 800 - mean train loss  0.606079
+Step 900 - mean train loss  0.598877
+==================== Training Iteration #24 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 75.0525107383728,
+ 'training/train_loss_mean': np.float64(0.5987200112966634),
+ 'training/train_loss_std': np.float64(0.38755431341597363)}
+>>>>>>>>>> Evaluation Information
+{'best_return': np.float64(4.511361269583251),
+ 'episodes_len': 4700,
+ 'episodes_return': np.float64(4.484690017393457),
+ 'mean_qoe': np.float64(0.0009541893654028632),
+ 'time/evaluation': 149.5450882911682,
+ 'total_qoe': np.float64(4.484690017393457)}
+Step 0 - mean train loss  0.391224
+Step 100 - mean train loss  0.479044
+Step 200 - mean train loss  0.476128
+Step 300 - mean train loss  0.478494
+Step 400 - mean train loss  0.497608
+Step 500 - mean train loss  0.497523
+Step 600 - mean train loss  0.538196
+Step 700 - mean train loss  0.563492
+Step 800 - mean train loss  0.582636
+Step 900 - mean train loss  0.571070
+==================== Training Iteration #25 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 76.44679355621338,
+ 'training/train_loss_mean': np.float64(0.5752884766103767),
+ 'training/train_loss_std': np.float64(0.3670306644606795)}
+Step 0 - mean train loss  0.828948
+Step 100 - mean train loss  0.593897
+Step 200 - mean train loss  0.546555
+Step 300 - mean train loss  0.560887
+Step 400 - mean train loss  0.564781
+Step 500 - mean train loss  0.577139
+Step 600 - mean train loss  0.584638
+Step 700 - mean train loss  0.588441
+Step 800 - mean train loss  0.585939
+Step 900 - mean train loss  0.585444
+==================== Training Iteration #26 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 78.48275518417358,
+ 'training/train_loss_mean': np.float64(0.5827687840355209),
+ 'training/train_loss_std': np.float64(0.3362002396821873)}
+>>>>>>>>>> Evaluation Information
+{'best_return': np.float64(4.511361269583251),
+ 'episodes_len': 4700,
+ 'episodes_return': np.float64(4.511015077271733),
+ 'mean_qoe': np.float64(0.000959790441972709),
+ 'time/evaluation': 149.05828976631165,
+ 'total_qoe': np.float64(4.511015077271733)}
+Step 0 - mean train loss  0.423890
+Step 100 - mean train loss  0.506956
+Step 200 - mean train loss  0.579257
+Step 300 - mean train loss  0.570953
+Step 400 - mean train loss  0.561588
+Step 500 - mean train loss  0.543639
+Step 600 - mean train loss  0.552091
+Step 700 - mean train loss  0.565045
+Step 800 - mean train loss  0.581477
+Step 900 - mean train loss  0.573956
+==================== Training Iteration #27 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 76.60911059379578,
+ 'training/train_loss_mean': np.float64(0.5993524904645247),
+ 'training/train_loss_std': np.float64(0.41151530453275753)}
+Step 0 - mean train loss  0.918113
+Step 100 - mean train loss  0.545629
+Step 200 - mean train loss  0.597626
+Step 300 - mean train loss  0.588182
+Step 400 - mean train loss  0.553750
+Step 500 - mean train loss  0.579817
+Step 600 - mean train loss  0.570546
+Step 700 - mean train loss  0.558116
+Step 800 - mean train loss  0.551643
+Step 900 - mean train loss  0.547137
+==================== Training Iteration #28 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 78.67015337944031,
+ 'training/train_loss_mean': np.float64(0.5470563635514324),
+ 'training/train_loss_std': np.float64(0.33634166197243376)}
+Best model saved at: data/ft_plms/llama_base/artifacts_exp_pools_ss_None/abrllm_rank_128_w_20_gamma_1.0_sfd_256_sattn_True_sahd_2048_fusion_weighted_sum_lr_0.0001_wd_0.0001_warm_2000_epochs_80_seed_666/best_model
+>>>>>>>>>> Evaluation Information
+{'best_return': np.float64(4.513417181011898),
+ 'episodes_len': 4700,
+ 'episodes_return': np.float64(4.513417181011898),
+ 'mean_qoe': np.float64(0.000960301527874872),
+ 'time/evaluation': 149.27347874641418,
+ 'total_qoe': np.float64(4.513417181011898)}
+Step 0 - mean train loss  0.374687
+Step 100 - mean train loss  0.493976
+Step 200 - mean train loss  0.511724
+Step 300 - mean train loss  0.487684
+Step 400 - mean train loss  0.485002
+Step 500 - mean train loss  0.478018
+Step 600 - mean train loss  0.519434
+Step 700 - mean train loss  0.574964
+Step 800 - mean train loss  0.594791
+Step 900 - mean train loss  0.606008
+==================== Training Iteration #29 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 76.14397263526917,
+ 'training/train_loss_mean': np.float64(0.6086133006297662),
+ 'training/train_loss_std': np.float64(0.4095398485758854)}
+Step 0 - mean train loss  0.887424
+Step 100 - mean train loss  0.677713
+Step 200 - mean train loss  0.643145
+Step 300 - mean train loss  0.641468
+Step 400 - mean train loss  0.639440
+Step 500 - mean train loss  0.652143
+Step 600 - mean train loss  0.622352
+Step 700 - mean train loss  0.614624
+Step 800 - mean train loss  0.600972
+Step 900 - mean train loss  0.593806
+==================== Training Iteration #30 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 78.88368320465088,
+ 'training/train_loss_mean': np.float64(0.5994301864897914),
+ 'training/train_loss_std': np.float64(0.3888569218577968)}
+Checkpoint saved at: data/ft_plms/llama_base/artifacts_exp_pools_ss_None/abrllm_rank_128_w_20_gamma_1.0_sfd_256_sattn_True_sahd_2048_fusion_weighted_sum_lr_0.0001_wd_0.0001_warm_2000_epochs_80_seed_666/checkpoint/30
+>>>>>>>>>> Evaluation Information
+{'best_return': np.float64(4.513417181011898),
+ 'episodes_len': 4700,
+ 'episodes_return': np.float64(4.507971896023623),
+ 'mean_qoe': np.float64(0.0009591429566007708),
+ 'time/evaluation': 146.8117127418518,
+ 'total_qoe': np.float64(4.507971896023623)}
+Step 0 - mean train loss  0.137943
+Step 100 - mean train loss  0.477832
+Step 200 - mean train loss  0.480267
+Step 300 - mean train loss  0.500290
+Step 400 - mean train loss  0.534388
+Step 500 - mean train loss  0.522476
+Step 600 - mean train loss  0.541525
+Step 700 - mean train loss  0.558310
+Step 800 - mean train loss  0.577704
+Step 900 - mean train loss  0.566339
+==================== Training Iteration #31 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 78.60250616073608,
+ 'training/train_loss_mean': np.float64(0.5654270174271655),
+ 'training/train_loss_std': np.float64(0.3561035971387424)}
+Step 0 - mean train loss  0.778804
+Step 100 - mean train loss  0.604396
+Step 200 - mean train loss  0.569614
+Step 300 - mean train loss  0.561600
+Step 400 - mean train loss  0.554533
+Step 500 - mean train loss  0.590410
+Step 600 - mean train loss  0.597627
+Step 700 - mean train loss  0.609910
+Step 800 - mean train loss  0.609087
+Step 900 - mean train loss  0.622232
+==================== Training Iteration #32 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 77.61920666694641,
+ 'training/train_loss_mean': np.float64(0.6317839255153452),
+ 'training/train_loss_std': np.float64(0.3942327188200376)}
+>>>>>>>>>> Evaluation Information
+{'best_return': np.float64(4.513417181011898),
+ 'episodes_len': 4700,
+ 'episodes_return': np.float64(4.500501491317872),
+ 'mean_qoe': np.float64(0.0009575535087910365),
+ 'time/evaluation': 148.85568499565125,
+ 'total_qoe': np.float64(4.500501491317872)}
+Step 0 - mean train loss  0.192016
+Step 100 - mean train loss  0.571387
+Step 200 - mean train loss  0.542054
+Step 300 - mean train loss  0.522410
+Step 400 - mean train loss  0.509571
+Step 500 - mean train loss  0.498149
+Step 600 - mean train loss  0.559475
+Step 700 - mean train loss  0.592828
+Step 800 - mean train loss  0.594310
+Step 900 - mean train loss  0.590105
+==================== Training Iteration #33 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 76.34522771835327,
+ 'training/train_loss_mean': np.float64(0.5998388417485921),
+ 'training/train_loss_std': np.float64(0.43683785726392643)}
+Step 0 - mean train loss  0.775677
+Step 100 - mean train loss  0.563551
+Step 200 - mean train loss  0.585181
+Step 300 - mean train loss  0.575695
+Step 400 - mean train loss  0.548161
+Step 500 - mean train loss  0.542896
+Step 600 - mean train loss  0.550248
+Step 700 - mean train loss  0.570665
+Step 800 - mean train loss  0.567376
+Step 900 - mean train loss  0.558824
+==================== Training Iteration #34 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 78.81183552742004,
+ 'training/train_loss_mean': np.float64(0.5557560660468647),
+ 'training/train_loss_std': np.float64(0.36580494356875426)}
+>>>>>>>>>> Evaluation Information
+{'best_return': np.float64(4.513417181011898),
+ 'episodes_len': 4700,
+ 'episodes_return': np.float64(4.504702688733935),
+ 'mean_qoe': np.float64(0.0009584473805816882),
+ 'time/evaluation': 146.7922019958496,
+ 'total_qoe': np.float64(4.504702688733935)}
+Step 0 - mean train loss  0.470071
+Step 100 - mean train loss  0.549583
+Step 200 - mean train loss  0.525950
+Step 300 - mean train loss  0.519798
+Step 400 - mean train loss  0.517333
+Step 500 - mean train loss  0.548628
+Step 600 - mean train loss  0.574791
+Step 700 - mean train loss  0.573977
+Step 800 - mean train loss  0.593532
+Step 900 - mean train loss  0.598889
+==================== Training Iteration #35 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 77.87455105781555,
+ 'training/train_loss_mean': np.float64(0.6468759661074728),
+ 'training/train_loss_std': np.float64(0.4953457077087201)}
+Step 0 - mean train loss  1.195527
+Step 100 - mean train loss  0.842536
+Step 200 - mean train loss  0.784582
+Step 300 - mean train loss  0.733213
+Step 400 - mean train loss  0.719330
+Step 500 - mean train loss  0.775986
+Step 600 - mean train loss  0.753282
+Step 700 - mean train loss  0.722359
+Step 800 - mean train loss  0.710527
+Step 900 - mean train loss  0.698287
+==================== Training Iteration #36 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 76.64106178283691,
+ 'training/train_loss_mean': np.float64(0.6968525454734384),
+ 'training/train_loss_std': np.float64(0.4881784164277959)}
+Best model saved at: data/ft_plms/llama_base/artifacts_exp_pools_ss_None/abrllm_rank_128_w_20_gamma_1.0_sfd_256_sattn_True_sahd_2048_fusion_weighted_sum_lr_0.0001_wd_0.0001_warm_2000_epochs_80_seed_666/best_model
+>>>>>>>>>> Evaluation Information
+{'best_return': np.float64(4.520858183070482),
+ 'episodes_len': 4700,
+ 'episodes_return': np.float64(4.520858183070482),
+ 'mean_qoe': np.float64(0.0009618847198022302),
+ 'time/evaluation': 150.29419040679932,
+ 'total_qoe': np.float64(4.520858183070482)}
+Step 0 - mean train loss  0.551556
+Step 100 - mean train loss  0.616014
+Step 200 - mean train loss  0.621944
+Step 300 - mean train loss  0.623642
+Step 400 - mean train loss  0.618007
+Step 500 - mean train loss  0.629989
+Step 600 - mean train loss  0.739239
+Step 700 - mean train loss  0.784331
+Step 800 - mean train loss  0.783071
+Step 900 - mean train loss  0.760526
+==================== Training Iteration #37 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 76.08189392089844,
+ 'training/train_loss_mean': np.float64(0.7588324886905665),
+ 'training/train_loss_std': np.float64(0.577741923682571)}
+Step 0 - mean train loss  0.677535
+Step 100 - mean train loss  0.805866
+Step 200 - mean train loss  0.794289
+Step 300 - mean train loss  0.736962
+Step 400 - mean train loss  0.714672
+Step 500 - mean train loss  0.669504
+Step 600 - mean train loss  0.679339
+Step 700 - mean train loss  0.657533
+Step 800 - mean train loss  0.647317
+Step 900 - mean train loss  0.644205
+==================== Training Iteration #38 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 79.43992447853088,
+ 'training/train_loss_mean': np.float64(0.6421812490167855),
+ 'training/train_loss_std': np.float64(0.528014305656907)}
+Best model saved at: data/ft_plms/llama_base/artifacts_exp_pools_ss_None/abrllm_rank_128_w_20_gamma_1.0_sfd_256_sattn_True_sahd_2048_fusion_weighted_sum_lr_0.0001_wd_0.0001_warm_2000_epochs_80_seed_666/best_model
+>>>>>>>>>> Evaluation Information
+{'best_return': np.float64(4.521028695416236),
+ 'episodes_len': 4700,
+ 'episodes_return': np.float64(4.521028695416236),
+ 'mean_qoe': np.float64(0.0009619209990247311),
+ 'time/evaluation': 148.45880103111267,
+ 'total_qoe': np.float64(4.521028695416236)}
+Step 0 - mean train loss  1.009199
+Step 100 - mean train loss  0.686998
+Step 200 - mean train loss  0.610757
+Step 300 - mean train loss  0.570889
+Step 400 - mean train loss  0.541842
+Step 500 - mean train loss  0.542167
+Step 600 - mean train loss  0.556461
+Step 700 - mean train loss  0.567219
+Step 800 - mean train loss  0.611028
+Step 900 - mean train loss  0.611484
+==================== Training Iteration #39 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 76.47791266441345,
+ 'training/train_loss_mean': np.float64(0.6748285794443166),
+ 'training/train_loss_std': np.float64(0.5426433851138887)}
+Step 0 - mean train loss  1.027432
+Step 100 - mean train loss  0.709089
+Step 200 - mean train loss  0.641314
+Step 300 - mean train loss  0.631015
+Step 400 - mean train loss  0.596580
+Step 500 - mean train loss  0.592092
+Step 600 - mean train loss  0.594055
+Step 700 - mean train loss  0.594756
+Step 800 - mean train loss  0.590669
+Step 900 - mean train loss  0.589245
+==================== Training Iteration #40 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 78.68488144874573,
+ 'training/train_loss_mean': np.float64(0.5927609648164194),
+ 'training/train_loss_std': np.float64(0.37479228920646246)}
+Checkpoint saved at: data/ft_plms/llama_base/artifacts_exp_pools_ss_None/abrllm_rank_128_w_20_gamma_1.0_sfd_256_sattn_True_sahd_2048_fusion_weighted_sum_lr_0.0001_wd_0.0001_warm_2000_epochs_80_seed_666/checkpoint/40
+Best model saved at: data/ft_plms/llama_base/artifacts_exp_pools_ss_None/abrllm_rank_128_w_20_gamma_1.0_sfd_256_sattn_True_sahd_2048_fusion_weighted_sum_lr_0.0001_wd_0.0001_warm_2000_epochs_80_seed_666/best_model
+>>>>>>>>>> Evaluation Information
+{'best_return': np.float64(4.52348296317958),
+ 'episodes_len': 4700,
+ 'episodes_return': np.float64(4.52348296317958),
+ 'mean_qoe': np.float64(0.0009624431836552298),
+ 'time/evaluation': 148.69569945335388,
+ 'total_qoe': np.float64(4.52348296317958)}
+Step 0 - mean train loss  0.400866
+Step 100 - mean train loss  0.588689
+Step 200 - mean train loss  0.624004
+Step 300 - mean train loss  0.649505
+Step 400 - mean train loss  0.661822
+Step 500 - mean train loss  0.636584
+Step 600 - mean train loss  0.618524
+Step 700 - mean train loss  0.595216
+Step 800 - mean train loss  0.585792
+Step 900 - mean train loss  0.575650
+==================== Training Iteration #41 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 75.85527801513672,
+ 'training/train_loss_mean': np.float64(0.6040975417872614),
+ 'training/train_loss_std': np.float64(0.4009276798927582)}
+Step 0 - mean train loss  1.039814
+Step 100 - mean train loss  1.223118
+Step 200 - mean train loss  1.103564
+Step 300 - mean train loss  0.973305
+Step 400 - mean train loss  0.969594
+Step 500 - mean train loss  0.977144
+Step 600 - mean train loss  0.934050
+Step 700 - mean train loss  0.882280
+Step 800 - mean train loss  0.837923
+Step 900 - mean train loss  0.803098
+==================== Training Iteration #42 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 76.48988962173462,
+ 'training/train_loss_mean': np.float64(0.7818167296740373),
+ 'training/train_loss_std': np.float64(0.6365111131457022)}
+>>>>>>>>>> Evaluation Information
+{'best_return': np.float64(4.52348296317958),
+ 'episodes_len': 4700,
+ 'episodes_return': np.float64(4.5167064160078585),
+ 'mean_qoe': np.float64(0.000961001365108055),
+ 'time/evaluation': 149.84775471687317,
+ 'total_qoe': np.float64(4.5167064160078585)}
+Step 0 - mean train loss  0.414220
+Step 100 - mean train loss  0.526046
+Step 200 - mean train loss  0.585562
+Step 300 - mean train loss  0.577374
+Step 400 - mean train loss  0.578163
+Step 500 - mean train loss  0.592812
+Step 600 - mean train loss  0.688221
+Step 700 - mean train loss  0.753044
+Step 800 - mean train loss  0.761165
+Step 900 - mean train loss  0.751905
+==================== Training Iteration #43 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 78.58587503433228,
+ 'training/train_loss_mean': np.float64(0.727369584578901),
+ 'training/train_loss_std': np.float64(0.596500008797639)}
+Step 0 - mean train loss  0.687880
+Step 100 - mean train loss  0.676341
+Step 200 - mean train loss  0.632453
+Step 300 - mean train loss  0.609069
+Step 400 - mean train loss  0.583412
+Step 500 - mean train loss  0.576347
+Step 600 - mean train loss  0.565317
+Step 700 - mean train loss  0.558020
+Step 800 - mean train loss  0.551424
+Step 900 - mean train loss  0.552367
+==================== Training Iteration #44 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 77.575040102005,
+ 'training/train_loss_mean': np.float64(0.5520840896523547),
+ 'training/train_loss_std': np.float64(0.3410140860050243)}
+>>>>>>>>>> Evaluation Information
+{'best_return': np.float64(4.52348296317958),
+ 'episodes_len': 4700,
+ 'episodes_return': np.float64(4.5226304823242165),
+ 'mean_qoe': np.float64(0.0009622618047498333),
+ 'time/evaluation': 148.74715161323547,
+ 'total_qoe': np.float64(4.5226304823242165)}
+Step 0 - mean train loss  0.446457
+Step 100 - mean train loss  0.497972
+Step 200 - mean train loss  0.500522
+Step 300 - mean train loss  0.546593
+Step 400 - mean train loss  0.547095
+Step 500 - mean train loss  0.555301
+Step 600 - mean train loss  0.625913
+Step 700 - mean train loss  0.642551
+Step 800 - mean train loss  0.642264
+Step 900 - mean train loss  0.629375
+==================== Training Iteration #45 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 76.7159173488617,
+ 'training/train_loss_mean': np.float64(0.6308594232656054),
+ 'training/train_loss_std': np.float64(0.46572375380068565)}
+Step 0 - mean train loss  1.185492
+Step 100 - mean train loss  1.193300
+Step 200 - mean train loss  1.031940
+Step 300 - mean train loss  0.890614
+Step 400 - mean train loss  0.888112
+Step 500 - mean train loss  0.935695
+Step 600 - mean train loss  0.894117
+Step 700 - mean train loss  0.859076
+Step 800 - mean train loss  0.828111
+Step 900 - mean train loss  0.838765
+==================== Training Iteration #46 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 78.78630018234253,
+ 'training/train_loss_mean': np.float64(0.830270007428485),
+ 'training/train_loss_std': np.float64(0.638487009599603)}
+>>>>>>>>>> Evaluation Information
+{'best_return': np.float64(4.52348296317958),
+ 'episodes_len': 4700,
+ 'episodes_return': np.float64(4.502749625908733),
+ 'mean_qoe': np.float64(0.0009580318352997306),
+ 'time/evaluation': 147.87110137939453,
+ 'total_qoe': np.float64(4.502749625908733)}
+Step 0 - mean train loss  2.181555
+Step 100 - mean train loss  0.923828
+Step 200 - mean train loss  0.802558
+Step 300 - mean train loss  0.734481
+Step 400 - mean train loss  0.697670
+Step 500 - mean train loss  0.669859
+Step 600 - mean train loss  0.671234
+Step 700 - mean train loss  0.676229
+Step 800 - mean train loss  0.700507
+Step 900 - mean train loss  0.724931
+==================== Training Iteration #47 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 78.78267335891724,
+ 'training/train_loss_mean': np.float64(0.8675001074207468),
+ 'training/train_loss_std': np.float64(0.8063655972217764)}
+Step 0 - mean train loss  1.667827
+Step 100 - mean train loss  0.973421
+Step 200 - mean train loss  0.907560
+Step 300 - mean train loss  0.818379
+Step 400 - mean train loss  0.764645
+Step 500 - mean train loss  0.730251
+Step 600 - mean train loss  0.733963
+Step 700 - mean train loss  0.733907
+Step 800 - mean train loss  0.710296
+Step 900 - mean train loss  0.705380
+==================== Training Iteration #48 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 78.04061007499695,
+ 'training/train_loss_mean': np.float64(0.6970115212319665),
+ 'training/train_loss_std': np.float64(0.50757016979648)}
+>>>>>>>>>> Evaluation Information
+{'best_return': np.float64(4.52348296317958),
+ 'episodes_len': 4700,
+ 'episodes_return': np.float64(4.505978580422245),
+ 'mean_qoe': np.float64(0.0009587188468983501),
+ 'time/evaluation': 147.42229628562927,
+ 'total_qoe': np.float64(4.505978580422245)}
+Step 0 - mean train loss  0.732635
+Step 100 - mean train loss  0.551066
+Step 200 - mean train loss  0.546337
+Step 300 - mean train loss  0.574109
+Step 400 - mean train loss  0.553332
+Step 500 - mean train loss  0.533595
+Step 600 - mean train loss  0.562679
+Step 700 - mean train loss  0.614960
+Step 800 - mean train loss  0.627725
+Step 900 - mean train loss  0.629609
+==================== Training Iteration #49 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 79.10807847976685,
+ 'training/train_loss_mean': np.float64(0.634467469811174),
+ 'training/train_loss_std': np.float64(0.4724823615873934)}
+Step 0 - mean train loss  0.871015
+Step 100 - mean train loss  0.717833
+Step 200 - mean train loss  0.729223
+Step 300 - mean train loss  0.709702
+Step 400 - mean train loss  0.718303
+Step 500 - mean train loss  0.702646
+Step 600 - mean train loss  0.670439
+Step 700 - mean train loss  0.667304
+Step 800 - mean train loss  0.675252
+Step 900 - mean train loss  0.683344
+==================== Training Iteration #50 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 75.50320959091187,
+ 'training/train_loss_mean': np.float64(0.6765293312758341),
+ 'training/train_loss_std': np.float64(0.456010452591936)}
+Checkpoint saved at: data/ft_plms/llama_base/artifacts_exp_pools_ss_None/abrllm_rank_128_w_20_gamma_1.0_sfd_256_sattn_True_sahd_2048_fusion_weighted_sum_lr_0.0001_wd_0.0001_warm_2000_epochs_80_seed_666/checkpoint/50
+>>>>>>>>>> Evaluation Information
+{'best_return': np.float64(4.52348296317958),
+ 'episodes_len': 4700,
+ 'episodes_return': np.float64(4.515847652163319),
+ 'mean_qoe': np.float64(0.0009608186493964508),
+ 'time/evaluation': 149.96768450737,
+ 'total_qoe': np.float64(4.515847652163319)}
+Step 0 - mean train loss  0.350826
+Step 100 - mean train loss  0.627191
+Step 200 - mean train loss  0.607707
+Step 300 - mean train loss  0.646920
+Step 400 - mean train loss  0.623597
+Step 500 - mean train loss  0.614428
+Step 600 - mean train loss  0.647282
+Step 700 - mean train loss  0.672701
+Step 800 - mean train loss  0.679093
+Step 900 - mean train loss  0.656451
+==================== Training Iteration #51 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 78.62564516067505,
+ 'training/train_loss_mean': np.float64(0.6521137442956885),
+ 'training/train_loss_std': np.float64(0.44662156389062824)}
+Step 0 - mean train loss  0.865188
+Step 100 - mean train loss  0.633243
+Step 200 - mean train loss  0.654466
+Step 300 - mean train loss  0.658551
+Step 400 - mean train loss  0.641236
+Step 500 - mean train loss  0.643272
+Step 600 - mean train loss  0.672110
+Step 700 - mean train loss  0.666630
+Step 800 - mean train loss  0.676309
+Step 900 - mean train loss  0.725928
+==================== Training Iteration #52 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 76.38458347320557,
+ 'training/train_loss_mean': np.float64(0.7480591156666754),
+ 'training/train_loss_std': np.float64(0.5210440802303412)}
+>>>>>>>>>> Evaluation Information
+{'best_return': np.float64(4.52348296317958),
+ 'episodes_len': 4700,
+ 'episodes_return': np.float64(4.488650229360797),
+ 'mean_qoe': np.float64(0.0009550319636937865),
+ 'time/evaluation': 149.85289645195007,
+ 'total_qoe': np.float64(4.488650229360797)}
+Step 0 - mean train loss  0.623299
+Step 100 - mean train loss  0.720936
+Step 200 - mean train loss  0.698210
+Step 300 - mean train loss  0.651695
+Step 400 - mean train loss  0.674568
+Step 500 - mean train loss  0.679752
+Step 600 - mean train loss  0.806990
+Step 700 - mean train loss  0.911593
+Step 800 - mean train loss  0.892684
+Step 900 - mean train loss  0.873270
+==================== Training Iteration #53 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 76.14756608009338,
+ 'training/train_loss_mean': np.float64(0.8573187314671461),
+ 'training/train_loss_std': np.float64(0.6986927786919107)}
+Step 0 - mean train loss  0.929822
+Step 100 - mean train loss  0.841182
+Step 200 - mean train loss  0.876618
+Step 300 - mean train loss  0.810800
+Step 400 - mean train loss  0.775578
+Step 500 - mean train loss  0.732978
+Step 600 - mean train loss  0.795850
+Step 700 - mean train loss  0.799896
+Step 800 - mean train loss  0.779319
+Step 900 - mean train loss  0.771596
+==================== Training Iteration #54 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 78.46284794807434,
+ 'training/train_loss_mean': np.float64(0.7612132729680079),
+ 'training/train_loss_std': np.float64(0.5905732359681632)}
+>>>>>>>>>> Evaluation Information
+{'best_return': np.float64(4.52348296317958),
+ 'episodes_len': 4700,
+ 'episodes_return': np.float64(4.520419981100671),
+ 'mean_qoe': np.float64(0.0009617914853405683),
+ 'time/evaluation': 147.06269931793213,
+ 'total_qoe': np.float64(4.520419981100671)}
+Step 0 - mean train loss  0.734204
+Step 100 - mean train loss  0.644309
+Step 200 - mean train loss  0.579780
+Step 300 - mean train loss  0.553084
+Step 400 - mean train loss  0.529962
+Step 500 - mean train loss  0.514992
+Step 600 - mean train loss  0.543914
+Step 700 - mean train loss  0.600233
+Step 800 - mean train loss  0.619594
+Step 900 - mean train loss  0.633478
+==================== Training Iteration #55 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 79.62662124633789,
+ 'training/train_loss_mean': np.float64(0.7038305986132174),
+ 'training/train_loss_std': np.float64(0.5606312720027152)}
+Step 0 - mean train loss  1.683560
+Step 100 - mean train loss  1.315607
+Step 200 - mean train loss  1.092092
+Step 300 - mean train loss  1.441606
+Step 400 - mean train loss  1.268683
+Step 500 - mean train loss  1.150485
+Step 600 - mean train loss  1.134872
+Step 700 - mean train loss  1.083631
+Step 800 - mean train loss  1.059638
+Step 900 - mean train loss  1.027290
+==================== Training Iteration #56 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 74.95954823493958,
+ 'training/train_loss_mean': np.float64(0.9823087409090057),
+ 'training/train_loss_std': np.float64(0.7760816428486051)}
+>>>>>>>>>> Evaluation Information
+{'best_return': np.float64(4.52348296317958),
+ 'episodes_len': 4700,
+ 'episodes_return': np.float64(4.495222026533868),
+ 'mean_qoe': np.float64(0.0009564302184114612),
+ 'time/evaluation': 148.82291460037231,
+ 'total_qoe': np.float64(4.495222026533868)}
+Step 0 - mean train loss  0.680126
+Step 100 - mean train loss  0.562050
+Step 200 - mean train loss  0.580943
+Step 300 - mean train loss  0.616957
+Step 400 - mean train loss  0.601888
+Step 500 - mean train loss  0.619151
+Step 600 - mean train loss  0.640084
+Step 700 - mean train loss  0.670227
+Step 800 - mean train loss  0.676862
+Step 900 - mean train loss  0.655076
+==================== Training Iteration #57 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 78.89045524597168,
+ 'training/train_loss_mean': np.float64(0.6514845667346137),
+ 'training/train_loss_std': np.float64(0.4419629425793269)}
+Step 0 - mean train loss  0.964567
+Step 100 - mean train loss  0.970483
+Step 200 - mean train loss  0.914386
+Step 300 - mean train loss  0.938286
+Step 400 - mean train loss  0.906630
+Step 500 - mean train loss  0.886639
+Step 600 - mean train loss  0.831652
+Step 700 - mean train loss  0.779161
+Step 800 - mean train loss  0.740046
+Step 900 - mean train loss  0.710815
+==================== Training Iteration #58 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 75.83577728271484,
+ 'training/train_loss_mean': np.float64(0.7013799604402489),
+ 'training/train_loss_std': np.float64(0.506528151808071)}
+>>>>>>>>>> Evaluation Information
+{'best_return': np.float64(4.52348296317958),
+ 'episodes_len': 4700,
+ 'episodes_return': np.float64(4.515347828631533),
+ 'mean_qoe': np.float64(0.000960712303964156),
+ 'time/evaluation': 148.0521674156189,
+ 'total_qoe': np.float64(4.515347828631533)}
+Step 0 - mean train loss  0.956038
+Step 100 - mean train loss  0.652736
+Step 200 - mean train loss  0.597321
+Step 300 - mean train loss  0.583560
+Step 400 - mean train loss  0.596378
+Step 500 - mean train loss  0.601581
+Step 600 - mean train loss  0.629952
+Step 700 - mean train loss  0.638315
+Step 800 - mean train loss  0.636903
+Step 900 - mean train loss  0.636750
+==================== Training Iteration #59 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 78.21435761451721,
+ 'training/train_loss_mean': np.float64(0.6844443183054028),
+ 'training/train_loss_std': np.float64(0.5101993623046067)}
+Step 0 - mean train loss  0.879017
+Step 100 - mean train loss  0.731691
+Step 200 - mean train loss  0.822141
+Step 300 - mean train loss  0.750309
+Step 400 - mean train loss  0.687233
+Step 500 - mean train loss  0.656621
+Step 600 - mean train loss  0.635801
+Step 700 - mean train loss  0.619370
+Step 800 - mean train loss  0.610999
+Step 900 - mean train loss  0.616121
+==================== Training Iteration #60 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 76.29538035392761,
+ 'training/train_loss_mean': np.float64(0.6189742518400018),
+ 'training/train_loss_std': np.float64(0.4234558555847579)}
+Checkpoint saved at: data/ft_plms/llama_base/artifacts_exp_pools_ss_None/abrllm_rank_128_w_20_gamma_1.0_sfd_256_sattn_True_sahd_2048_fusion_weighted_sum_lr_0.0001_wd_0.0001_warm_2000_epochs_80_seed_666/checkpoint/60
+>>>>>>>>>> Evaluation Information
+{'best_return': np.float64(4.52348296317958),
+ 'episodes_len': 4700,
+ 'episodes_return': np.float64(4.51878636252694),
+ 'mean_qoe': np.float64(0.0009614439069206256),
+ 'time/evaluation': 148.80390095710754,
+ 'total_qoe': np.float64(4.51878636252694)}
+Step 0 - mean train loss  0.351256
+Step 100 - mean train loss  0.655791
+Step 200 - mean train loss  0.651664
+Step 300 - mean train loss  0.642348
+Step 400 - mean train loss  0.629659
+Step 500 - mean train loss  0.633785
+Step 600 - mean train loss  0.631076
+Step 700 - mean train loss  0.622443
+Step 800 - mean train loss  0.630435
+Step 900 - mean train loss  0.614562
+==================== Training Iteration #61 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 78.33871865272522,
+ 'training/train_loss_mean': np.float64(0.6131753769504976),
+ 'training/train_loss_std': np.float64(0.40670091216360216)}
+Step 0 - mean train loss  0.881342
+Step 100 - mean train loss  0.765621
+Step 200 - mean train loss  0.737114
+Step 300 - mean train loss  0.838210
+Step 400 - mean train loss  0.778031
+Step 500 - mean train loss  0.740629
+Step 600 - mean train loss  0.747706
+Step 700 - mean train loss  0.771627
+Step 800 - mean train loss  0.772920
+Step 900 - mean train loss  0.817345
+==================== Training Iteration #62 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 78.20918130874634,
+ 'training/train_loss_mean': np.float64(0.8158525201453674),
+ 'training/train_loss_std': np.float64(0.6245086758595884)}
+>>>>>>>>>> Evaluation Information
+{'best_return': np.float64(4.52348296317958),
+ 'episodes_len': 4700,
+ 'episodes_return': np.float64(4.518679173913912),
+ 'mean_qoe': np.float64(0.0009614211008327473),
+ 'time/evaluation': 147.43999910354614,
+ 'total_qoe': np.float64(4.518679173913912)}
+Step 0 - mean train loss  0.604654
+Step 100 - mean train loss  0.638720
+Step 200 - mean train loss  0.729227
+Step 300 - mean train loss  0.765564
+Step 400 - mean train loss  0.729240
+Step 500 - mean train loss  0.696153
+Step 600 - mean train loss  0.684099
+Step 700 - mean train loss  0.669521
+Step 800 - mean train loss  0.657477
+Step 900 - mean train loss  0.642761
+==================== Training Iteration #63 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 76.26537871360779,
+ 'training/train_loss_mean': np.float64(0.6448057810184509),
+ 'training/train_loss_std': np.float64(0.3997473688759153)}
+Step 0 - mean train loss  1.289257
+Step 100 - mean train loss  0.916204
+Step 200 - mean train loss  0.796097
+Step 300 - mean train loss  0.782447
+Step 400 - mean train loss  0.773402
+Step 500 - mean train loss  0.740741
+Step 600 - mean train loss  0.738233
+Step 700 - mean train loss  0.778373
+Step 800 - mean train loss  0.763433
+Step 900 - mean train loss  0.733725
+==================== Training Iteration #64 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 77.47677731513977,
+ 'training/train_loss_mean': np.float64(0.7226490010865066),
+ 'training/train_loss_std': np.float64(0.5290486837706804)}
+>>>>>>>>>> Evaluation Information
+{'best_return': np.float64(4.52348296317958),
+ 'episodes_len': 4700,
+ 'episodes_return': np.float64(4.506968956682432),
+ 'mean_qoe': np.float64(0.0009589295652515812),
+ 'time/evaluation': 149.70302772521973,
+ 'total_qoe': np.float64(4.506968956682432)}
+Step 0 - mean train loss  0.495774
+Step 100 - mean train loss  0.505521
+Step 200 - mean train loss  0.526401
+Step 300 - mean train loss  0.580491
+Step 400 - mean train loss  0.598631
+Step 500 - mean train loss  0.706902
+Step 600 - mean train loss  0.743007
+Step 700 - mean train loss  0.743413
+Step 800 - mean train loss  0.734024
+Step 900 - mean train loss  0.720676
+==================== Training Iteration #65 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 76.50262403488159,
+ 'training/train_loss_mean': np.float64(0.7104421327906066),
+ 'training/train_loss_std': np.float64(0.516435762821486)}
+Step 0 - mean train loss  1.605553
+Step 100 - mean train loss  1.264679
+Step 200 - mean train loss  1.137506
+Step 300 - mean train loss  1.169802
+Step 400 - mean train loss  1.151966
+Step 500 - mean train loss  1.109661
+Step 600 - mean train loss  1.059333
+Step 700 - mean train loss  1.050103
+Step 800 - mean train loss  1.046796
+Step 900 - mean train loss  1.065521
+==================== Training Iteration #66 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 78.8190267086029,
+ 'training/train_loss_mean': np.float64(1.033631582226044),
+ 'training/train_loss_std': np.float64(0.8402268802832026)}
+>>>>>>>>>> Evaluation Information
+{'best_return': np.float64(4.52348296317958),
+ 'episodes_len': 4700,
+ 'episodes_return': np.float64(4.510945618228613),
+ 'mean_qoe': np.float64(0.0009597756634528963),
+ 'time/evaluation': 149.0391743183136,
+ 'total_qoe': np.float64(4.510945618228613)}
+Step 0 - mean train loss  0.601133
+Step 100 - mean train loss  0.614510
+Step 200 - mean train loss  0.601506
+Step 300 - mean train loss  0.626416
+Step 400 - mean train loss  0.603699
+Step 500 - mean train loss  0.597429
+Step 600 - mean train loss  0.623305
+Step 700 - mean train loss  0.642360
+Step 800 - mean train loss  0.646116
+Step 900 - mean train loss  0.636552
+==================== Training Iteration #67 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 76.23516583442688,
+ 'training/train_loss_mean': np.float64(0.6642510723009384),
+ 'training/train_loss_std': np.float64(0.46637195591372405)}
+Step 0 - mean train loss  1.326743
+Step 100 - mean train loss  1.450795
+Step 200 - mean train loss  1.340427
+Step 300 - mean train loss  1.187137
+Step 400 - mean train loss  1.176174
+Step 500 - mean train loss  1.360672
+Step 600 - mean train loss  1.462728
+Step 700 - mean train loss  1.390912
+Step 800 - mean train loss  1.308390
+Step 900 - mean train loss  1.257991
+==================== Training Iteration #68 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 80.7906882762909,
+ 'training/train_loss_mean': np.float64(1.1988520862763266),
+ 'training/train_loss_std': np.float64(1.2442431765175668)}
+>>>>>>>>>> Evaluation Information
+{'best_return': np.float64(4.52348296317958),
+ 'episodes_len': 4700,
+ 'episodes_return': np.float64(4.516596390745091),
+ 'mean_qoe': np.float64(0.000960977955477679),
+ 'time/evaluation': 145.589284658432,
+ 'total_qoe': np.float64(4.516596390745091)}
+Step 0 - mean train loss  1.372458
+Step 100 - mean train loss  0.780940
+Step 200 - mean train loss  0.739566
+Step 300 - mean train loss  0.699355
+Step 400 - mean train loss  0.674934
+Step 500 - mean train loss  0.659340
+Step 600 - mean train loss  0.687108
+Step 700 - mean train loss  0.725666
+Step 800 - mean train loss  0.727854
+Step 900 - mean train loss  0.705837
+==================== Training Iteration #69 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 77.41193795204163,
+ 'training/train_loss_mean': np.float64(0.6865545303938793),
+ 'training/train_loss_std': np.float64(0.5023852081729033)}
+Step 0 - mean train loss  1.018061
+Step 100 - mean train loss  0.648925
+Step 200 - mean train loss  0.678923
+Step 300 - mean train loss  0.695212
+Step 400 - mean train loss  0.726762
+Step 500 - mean train loss  0.704620
+Step 600 - mean train loss  0.703907
+Step 700 - mean train loss  0.711254
+Step 800 - mean train loss  0.713932
+Step 900 - mean train loss  0.729548
+==================== Training Iteration #70 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 77.62304282188416,
+ 'training/train_loss_mean': np.float64(0.7774046553529323),
+ 'training/train_loss_std': np.float64(0.7469023798339627)}
+Checkpoint saved at: data/ft_plms/llama_base/artifacts_exp_pools_ss_None/abrllm_rank_128_w_20_gamma_1.0_sfd_256_sattn_True_sahd_2048_fusion_weighted_sum_lr_0.0001_wd_0.0001_warm_2000_epochs_80_seed_666/checkpoint/70
+>>>>>>>>>> Evaluation Information
+{'best_return': np.float64(4.52348296317958),
+ 'episodes_len': 4700,
+ 'episodes_return': np.float64(4.499997596398115),
+ 'mean_qoe': np.float64(0.000957446297105982),
+ 'time/evaluation': 149.5068175792694,
+ 'total_qoe': np.float64(4.499997596398115)}
+Step 0 - mean train loss  0.231989
+Step 100 - mean train loss  0.988747
+Step 200 - mean train loss  0.862819
+Step 300 - mean train loss  0.761960
+Step 400 - mean train loss  0.702345
+Step 500 - mean train loss  0.672006
+Step 600 - mean train loss  0.687382
+Step 700 - mean train loss  0.713163
+Step 800 - mean train loss  0.695260
+Step 900 - mean train loss  0.676549
+==================== Training Iteration #71 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 77.99427342414856,
+ 'training/train_loss_mean': np.float64(0.6744066530845154),
+ 'training/train_loss_std': np.float64(0.4955620205799495)}
+Step 0 - mean train loss  0.912246
+Step 100 - mean train loss  0.665880
+Step 200 - mean train loss  0.726840
+Step 300 - mean train loss  0.703312
+Step 400 - mean train loss  0.656557
+Step 500 - mean train loss  0.637903
+Step 600 - mean train loss  0.626918
+Step 700 - mean train loss  0.631995
+Step 800 - mean train loss  0.645572
+Step 900 - mean train loss  0.684277
+==================== Training Iteration #72 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 78.63089370727539,
+ 'training/train_loss_mean': np.float64(0.770298499317936),
+ 'training/train_loss_std': np.float64(0.6243627223366586)}
+>>>>>>>>>> Evaluation Information
+{'best_return': np.float64(4.52348296317958),
+ 'episodes_len': 4700,
+ 'episodes_return': np.float64(4.506489093738353),
+ 'mean_qoe': np.float64(0.0009588274667528411),
+ 'time/evaluation': 152.56413078308105,
+ 'total_qoe': np.float64(4.506489093738353)}
+Step 0 - mean train loss  1.135146
+Step 100 - mean train loss  1.025626
+Step 200 - mean train loss  1.073412
+Step 300 - mean train loss  0.975425
+Step 400 - mean train loss  1.033251
+Step 500 - mean train loss  1.139402
+Step 600 - mean train loss  1.082216
+Step 700 - mean train loss  1.033842
+Step 800 - mean train loss  0.989157
+Step 900 - mean train loss  0.938195
+==================== Training Iteration #73 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 78.53469252586365,
+ 'training/train_loss_mean': np.float64(0.9100679269674828),
+ 'training/train_loss_std': np.float64(0.7900527348591245)}
+Step 0 - mean train loss  0.964588
+Step 100 - mean train loss  0.788132
+Step 200 - mean train loss  0.730310
+Step 300 - mean train loss  0.693939
+Step 400 - mean train loss  0.674300
+Step 500 - mean train loss  0.690856
+Step 600 - mean train loss  0.679098
+Step 700 - mean train loss  0.682561
+Step 800 - mean train loss  0.706239
+Step 900 - mean train loss  0.707553
+==================== Training Iteration #74 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 78.25184893608093,
+ 'training/train_loss_mean': np.float64(0.7073755598941212),
+ 'training/train_loss_std': np.float64(0.4943982865161172)}
+>>>>>>>>>> Evaluation Information
+{'best_return': np.float64(4.52348296317958),
+ 'episodes_len': 4700,
+ 'episodes_return': np.float64(4.509596627408267),
+ 'mean_qoe': np.float64(0.0009594886441294185),
+ 'time/evaluation': 151.85898303985596,
+ 'total_qoe': np.float64(4.509596627408267)}
+Step 0 - mean train loss  0.387471
+Step 100 - mean train loss  0.696153
+Step 200 - mean train loss  0.738410
+Step 300 - mean train loss  0.760443
+Step 400 - mean train loss  0.711765
+Step 500 - mean train loss  0.689063
+Step 600 - mean train loss  0.713201
+Step 700 - mean train loss  0.799302
+Step 800 - mean train loss  0.797836
+Step 900 - mean train loss  0.836814
+==================== Training Iteration #75 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 78.32421159744263,
+ 'training/train_loss_mean': np.float64(0.844446948381612),
+ 'training/train_loss_std': np.float64(0.6233832450836561)}
+Step 0 - mean train loss  1.162978
+Step 100 - mean train loss  1.401776
+Step 200 - mean train loss  1.558503
+Step 300 - mean train loss  1.251000
+Step 400 - mean train loss  1.086257
+Step 500 - mean train loss  0.992168
+Step 600 - mean train loss  0.944920
+Step 700 - mean train loss  0.889344
+Step 800 - mean train loss  0.857484
+Step 900 - mean train loss  0.851849
+==================== Training Iteration #76 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 78.4431414604187,
+ 'training/train_loss_mean': np.float64(0.8415278489888462),
+ 'training/train_loss_std': np.float64(0.7709993047390956)}
+>>>>>>>>>> Evaluation Information
+{'best_return': np.float64(4.52348296317958),
+ 'episodes_len': 4700,
+ 'episodes_return': np.float64(4.516702042597011),
+ 'mean_qoe': np.float64(0.0009610004345951086),
+ 'time/evaluation': 151.73743271827698,
+ 'total_qoe': np.float64(4.516702042597011)}
+Step 0 - mean train loss  0.336450
+Step 100 - mean train loss  0.729438
+Step 200 - mean train loss  0.820846
+Step 300 - mean train loss  0.820567
+Step 400 - mean train loss  0.814899
+Step 500 - mean train loss  0.795520
+Step 600 - mean train loss  0.820993
+Step 700 - mean train loss  0.801873
+Step 800 - mean train loss  0.778836
+Step 900 - mean train loss  0.760887
+==================== Training Iteration #77 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 78.63856077194214,
+ 'training/train_loss_mean': np.float64(0.7734580895345449),
+ 'training/train_loss_std': np.float64(0.5253197688333271)}
+Step 0 - mean train loss  1.070611
+Step 100 - mean train loss  0.695108
+Step 200 - mean train loss  0.689081
+Step 300 - mean train loss  0.685237
+Step 400 - mean train loss  0.657462
+Step 500 - mean train loss  0.637779
+Step 600 - mean train loss  0.680571
+Step 700 - mean train loss  0.700800
+Step 800 - mean train loss  0.689516
+Step 900 - mean train loss  0.679108
+==================== Training Iteration #78 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 78.74802994728088,
+ 'training/train_loss_mean': np.float64(0.6717444885873711),
+ 'training/train_loss_std': np.float64(0.4292726547771219)}
+>>>>>>>>>> Evaluation Information
+{'best_return': np.float64(4.52348296317958),
+ 'episodes_len': 4700,
+ 'episodes_return': np.float64(4.512483303610515),
+ 'mean_qoe': np.float64(0.0009601028305554287),
+ 'time/evaluation': 152.3423957824707,
+ 'total_qoe': np.float64(4.512483303610515)}
+Step 0 - mean train loss  0.350251
+Step 100 - mean train loss  0.679298
+Step 200 - mean train loss  0.699427
+Step 300 - mean train loss  0.689311
+Step 400 - mean train loss  0.683191
+Step 500 - mean train loss  0.665938
+Step 600 - mean train loss  0.668511
+Step 700 - mean train loss  0.670507
+Step 800 - mean train loss  0.680155
+Step 900 - mean train loss  0.688197
+==================== Training Iteration #79 ====================
+>>>>>>>>>> Training Information:
+{'time/training': 78.55043387413025,
+ 'training/train_loss_mean': np.float64(0.6887744207535478),
+ 'training/train_loss_std': np.float64(0.43579469378384394)}
+Load model from: data/ft_plms/llama_base/artifacts_exp_pools_ss_None/abrllm_rank_128_w_20_gamma_1.0_sfd_256_sattn_True_sahd_2048_fusion_weighted_sum_lr_0.0001_wd_0.0001_warm_2000_epochs_80_seed_666/best_model
+100
+{'time': 153.43997859954834, 'mean_reward': np.float64(0.9673863227333296), 'mean_qoe': np.float64(0.9673863227333296), 'total_qoe': np.float64(4.5246242957809235), 'mean_qoe_per_chunk': np.float64(0.0009626860203789199), 'episodes_count': 100, 'total_chunks': 4700}
+Test time: 153.43997859954834
+QoE Metrics:
+  Mean QoE (per chunk): 0.9673863227333296
+  Total QoE (all episodes): 4.5246242957809235
+  Episodes count: 100
+  Total chunks: 4700
+  Mean reward (backward compatibility): 0.9673863227333296
+Results saved at: artifacts/results/fcc-test_video1/trace_num_100_fixed_True/llama_base/abrllm_rank_128_w_20_gamma_1.0_tgt_scale_1.0_seed_666

@@ -1,4 +1,4 @@
-python run_abr.py --adapt\
+python run_abr.py --adapt \
                   --test \
                   --frozen \
                   --state-use-self-attention \
@@ -13,7 +13,8 @@ python run_abr.py --adapt\
                   --gamma 1. \
                   --lr 0.0001 \
                   --warmup-steps 2000 \
-                  --num-epochs 80 \
+                  --num-epochs 50 \
                   --eval-per-epoch 2 \
                   --target-return-scale 1 \
-                  --num-epochs 80 \
+                  --save-checkpoint-per-epoch 20 \
+                  --state-attn-hidden-dim 1024

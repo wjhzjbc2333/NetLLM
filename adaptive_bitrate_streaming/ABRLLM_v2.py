@@ -2,6 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import random
+import os
 import numpy as np
 from collections import deque
 from plm_special.utils.plm_utils import load_plm_llama
@@ -11,19 +12,7 @@ import pickle
 from munch import Munch
 from plm_special.data.dataset import ExperienceDataset
 from pprint import pprint
-
-# parser = ArgumentParser(description=__doc__, formatter_class=ArgumentDefaultsHelpFormatter)
-# args = parser.parse_args()
-# args.model_path = "/home/amora/NetLLM/downloaded_plms/llama/base"
-# args.frozen = True
-# args.state_embedding_dim = 256
-# args.llm_dim = 2048
-# args.num_heads = 8
-# args.key_dim = 128
-# args.state_use_self_attention = True
-# args.state_attn_hidden_dim = 6 * 256
-# args.max_length = 20
-# args.fusion_method = 'weighted_sum' # choose from ['weighted_sum', 'mean', 'concat']
+from plm_special.models.low_rank import peft_model
 
 class ABRLLM(nn.Module):
     def __init__(self, args):
@@ -732,8 +721,7 @@ class AlignmentLayer(nn.Module):
         cross_attn_embeddings = torch.einsum('bhls,she->blhe', attn, v_embeddings)
         return cross_attn_embeddings # (batch_size, seq_len, num_heads, head_dim)
 
-if __name__ == "__main__":
-    #Print Pickle files
+def print_pickle_files():
     with open('artifacts/exp_pools/exp_pool.pkl', 'rb') as f:
         exp_pool = pickle.load(f)
     print(dir(exp_pool))
@@ -747,4 +735,89 @@ if __name__ == "__main__":
         print("奖励:", exp_pool.rewards[i])
         print("是否结束:", exp_pool.dones[i])
         print("-" * 40)
+    
+def prepare_args():
+    parser = ArgumentParser(formatter_class=ArgumentDefaultsHelpFormatter)    
+    args = parser.parse_args()
+
+    args.adapt = True
+    args.test = True
+    args.grad_accum_steps = 32
+    args.seed = 666
+    args.scale = 1000
+    args.model_dir = None
+    args.device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
+    args.device_out = 'cuda:0' if torch.cuda.is_available() else 'cpu'
+    args.device_mid = 'cuda:0' if torch.cuda.is_available() else 'cpu'
+
+    args.plm_type = 'llama'
+    args.plm_size = 'large'
+    args.rank =128
+    args.state_feature_dim = 256
+    args.state_embedding_dim = 256
+    args.llm_dim = 3072
+
+    args.frozen = True
+    args.num_heads = 8
+    args.key_dim = 128
+    args.state_use_self_attention = True
+    args.state_attn_hidden_dim = 256
+    args.fusion_method = 'weighted_sum'
+
+    args.w = 20
+    args.max_length = args.w
+    args.gamma = 1.
+    args.lr = 1e-4
+    args.weight_decay = 1e-4
+    args.warmup_steps = 2000
+    args.num_epochs = 50
+    args.eval_per_epoch = 2
+    args.save_checkpoint_per_epoch = 10
+    args.target_return_scale = 1.
+    args.which_layer = -1
+
+    args.exp_pool_path = 'artifacts/exp_pools/exp_pool.pkl'
+    args._base_dir = '' if 'adaptive_bitrate_streaming' in os.getcwd() else 'adaptive_bitrate_streaming/'
+    args.plm_dir = args._base_dir + ('../../downloaded_plms' if 'adaptive_bitrate_streaming' in args._base_dir else '../downloaded_plms')
+    args.model_path = os.path.join(args.plm_dir, args.plm_type, args.plm_size)
+    args.sample_step = None
+    args.trace = 'fcc-test'
+    args.trace_num = 100
+    args.video = 'video1'
+    args.fixed_order = True
+
+    return args
+
+def test_save_model():
+    args = prepare_args()
+    abrllm_model = ABRLLM(args)
+    abrllm_model.device = torch.device(args.device)
+    abrllm_model = abrllm_model.to(args.device)
+    abrllm_model.plm = peft_model(abrllm_model.plm, args.plm_type, rank=args.rank)
+    print(abrllm_model)
+
+    # plm_ft_dir = args._base_dir + 'data/ft_plms'
+    # train_exp_pool_info = args.exp_pool_path.split('/')[-4:-1]
+    # train_exp_pool_info = '_'.join(train_exp_pool_info)
+    # models_dir = os.path.join(
+    #     plm_ft_dir, 
+    #     f'{args.plm_type}_{args.plm_size}', 
+    #     train_exp_pool_info + f'_ss_{args.sample_step}', 
+    #     f'abrllm_rank_{args.rank}_w_{args.w}_gamma_{args.gamma}_sfd_{args.state_feature_dim}'
+    #     f'_sattn_{args.state_use_self_attention}_sahd_{args.state_attn_hidden_dim}_fusion_{args.fusion_method}'
+    #     f'_lr_{args.lr}_wd_{args.weight_decay}_warm_{args.warmup_steps}_epochs_{args.num_epochs}_seed_{args.seed}'
+    # )
+    # checkpoint_dir = os.path.join(models_dir, 'checkpoint')
+    # best_model_dir = os.path.join(models_dir, 'best_model')
+    # save_dir = os.path.join(checkpoint_dir, str(0))
+    # if not os.path.exists(save_dir):
+    #     os.makedirs(save_dir)
+    # if args.rank > 0:
+    #     # save lora weights
+    #     abrllm_model.plm.save_pretrained(save_dir)
+    #     # save other modules except plm
+    #     torch.save(abrllm_model.modules_except_plm.state_dict(), os.path.join(save_dir, 'modules_except_plm.bin'))
+
+if __name__ == "__main__":
+    test_save_model()
     

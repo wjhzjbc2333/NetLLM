@@ -72,14 +72,16 @@ def adapt(args, model, exp_dataset, exp_dataset_info, eval_env_settings, checkpo
         print('>' * 10, 'Training Information:')
         pprint(train_logs)
 
-        if epoch % args.save_checkpoint_per_epoch == 0:  # save checkpoint
+        #dont save at same time
+        if (epoch+1) % args.save_checkpoint_per_epoch == 0:  # save checkpoint
             checkpoint_dir_epoch = os.path.join(checkpoint_dir, str(epoch))
             if not os.path.exists(checkpoint_dir_epoch):
                 os.makedirs(checkpoint_dir_epoch)
             save_model(args, model, checkpoint_dir_epoch)
             print('Checkpoint saved at:', checkpoint_dir_epoch)
 
-        if epoch % args.eval_per_epoch == 0:
+        #dont save at previous 10 steps
+        if epoch > 10 and epoch % args.eval_per_epoch == 0:
             eval_logs = evaluate_on_env(args, env_settings=eval_env_settings, model=model, target_return=target_return, max_ep_num=args.trace_num,
                                         process_reward_fn=eval_process_reward_fn)
             episodes_return = eval_logs['episodes_return']
@@ -284,8 +286,9 @@ if __name__ == '__main__':
     if args.state_embedding_dim is None:
         args.state_embedding_dim = args.state_feature_dim
     
+    #6 * args.state_embedding_dim in ABRLLM, args.state_embedding_dim in ABRLLM_v2
     if args.state_attn_hidden_dim is None:
-        args.state_attn_hidden_dim = 8 * args.state_embedding_dim
+        args.state_attn_hidden_dim = args.state_embedding_dim
     
     if args.device is None:
         args.device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
