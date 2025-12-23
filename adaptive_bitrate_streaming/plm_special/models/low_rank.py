@@ -9,7 +9,8 @@ TARGET_MODULES = {
     'mistral': ["q_proj", "v_proj"],
     'opt': ["q_proj", "v_proj"],
     'gpt2': ["q_proj", "v_proj"],
-    't5-lm': ["q", "v"]
+    't5-lm': ["q", "v"],
+    'qwen': ["q_proj", "v_proj"],
 }
 
 

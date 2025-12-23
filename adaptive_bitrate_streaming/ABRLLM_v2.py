@@ -5,7 +5,7 @@ import random
 import os
 import numpy as np
 from collections import deque
-from plm_special.utils.plm_utils import load_plm_llama
+from plm_special.utils.plm_utils import load_plm_llama, load_plm_qwen3
 from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 from baseline_special.utils.constants import BITRATE_LEVELS
 import pickle
@@ -34,8 +34,9 @@ class ABRLLM(nn.Module):
         self.max_length = args.max_length
 
         #load llm&tokenizer
-        self.plm, self.tokenizer, self.plm_config = load_plm_llama(args.model_path)
-        
+        #self.plm, self.tokenizer, self.plm_config = load_plm_llama(args.model_path)
+        self.plm, self.tokenizer, self.plm_config = load_plm_qwen3(args.model_path)
+
         # Alias for compatibility with training framework
         self.plm_embed_size = self.llm_dim  # For compatibility with training framework
         self.bitrate_levels = BITRATE_LEVELS  # For compatibility with training framework

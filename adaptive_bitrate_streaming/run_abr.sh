@@ -3,8 +3,8 @@ python run_abr.py --adapt \
                   --frozen \
                   --state-use-self-attention \
                   --grad-accum-steps 32 \
-                  --seed 666 \
-                  --plm-type llama \
+                  --seed 43 \
+                  --plm-type qwen \
                   --plm-size large \
                   --rank 128 \
                   --device cuda:0 \
@@ -12,9 +12,9 @@ python run_abr.py --adapt \
                   --w 20 \
                   --gamma 1. \
                   --lr 0.0001 \
-                  --warmup-steps 2000 \
-                  --num-epochs 50 \
+                  --warmup-steps 1 \
+                  --num-epochs 80 \
                   --eval-per-epoch 2 \
                   --target-return-scale 1 \
-                  --save-checkpoint-per-epoch 20 \
+                  --save-checkpoint-per-epoch 40 \
                   --state-attn-hidden-dim 1024

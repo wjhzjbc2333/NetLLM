@@ -63,10 +63,14 @@ def calc_metrics_by_algo(base_dir, skip_first_line=True):
     return stats
 
 
-def plot_metrics(stats):
+def plot_metrics(stats, save_path=None):
     """
     stats: dict, {algo_name: {'mean_bitrate':..., 'mean_reward':..., 'mean_rebuffering':..., 'mean_bitrate_variation':...}}
     一次性绘制四个子图，展示四个指标对比。
+    
+    Args:
+        stats: 统计结果字典
+        save_path: 保存路径，如果为None则显示图片，否则保存到指定路径
     """
     algos = list(stats.keys())
 
@@ -100,7 +104,16 @@ def plot_metrics(stats):
             ax.text(i, v + 0.01*max(values), f"{v:.4f}", ha='center', va='bottom')
 
     plt.tight_layout()
-    plt.show()
+    
+    if save_path is not None:
+        # 确保保存目录存在
+        save_dir = os.path.dirname(save_path)
+        if save_dir and not os.path.exists(save_dir):
+            os.makedirs(save_dir, exist_ok=True)
+        plt.savefig(save_path, dpi=300, bbox_inches='tight')
+        print(f"图片已保存到: {save_path}")
+    else:
+        plt.show()
 
 
 
@@ -119,5 +132,9 @@ for algo, s in stats.items():
     print(f"  Average Rebuffering: {s['mean_rebuffering']:.2f}")
     print(f"  Average Bitrate Variation: {s['mean_bitrate_variation']:.2f}")
 
-# 绘制图表
-plot_metrics(stats)
+# 绘制图表并保存
+# 自动生成保存路径：在 base_dir 的父目录下创建 figures 文件夹
+save_dir = os.path.join(os.path.dirname(base_dir), 'figures')
+os.makedirs(save_dir, exist_ok=True)
+save_path = os.path.join(save_dir, 'metrics_comparison.png')
+plot_metrics(stats, save_path=save_path)

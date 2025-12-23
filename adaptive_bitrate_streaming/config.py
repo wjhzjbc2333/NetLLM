@@ -27,8 +27,8 @@ class Config:
     exp_pools_dir = artifacts_dir + 'exp_pools/'
 
     # plm special
-    plm_types = ['gpt2', 'llama', 'llava', 't5-lm', 'opt', 'mistral']
-    plm_sizes = ['xxs', 'xs', 'small', 'base', 'large', 'xl', 'xxl']  # note that the actual size of plm is dependent on the type of plm. 
+    plm_types = ['gpt2', 'llama', 'llava', 't5-lm', 'opt', 'mistral', 'qwen']
+    plm_sizes = ['xxs', 'xs', 'small', 'base', 'large', 'xl', 'xxl', '2_7b']  # note that the actual size of plm is dependent on the type of plm. 
                                                          # for example, for llama, 'base' is 7b, while for gpt2, 'base' is 340M. you can specify it yourself.
     plm_dir = _base_dir + ('../../downloaded_plms' if 'adaptive_bitrate_streaming' in _base_dir else '../downloaded_plms')
     plm_ft_dir = _base_dir + 'data/ft_plms'
@@ -42,7 +42,8 @@ class Config:
         'llama': {
             'base': 2048,
             'large': 3072,
-            'xl': 4096
+            'xl': 4096,
+            '2_7b': 4096
         },
         't5-lm': {
             'base': 768,
@@ -63,6 +64,9 @@ class Config:
             'xs': 2048,
             'xxs': 512,
         },
+        'qwen': {
+            'large': 2560,
+        },
     }
     plm_layer_sizes = {
         'gpt2': {
@@ -74,7 +78,8 @@ class Config:
         'llama': {
             'base': 32,
             'large': 32,
-            'xl': 32
+            'xl': 32,
+            '2_7b': 32
         },
         't5-lm': { 
             'base': 12,
@@ -94,6 +99,9 @@ class Config:
             'small': 32,
             'xs': 32,
             'xxs': 16,
+        },
+        'qwen': {
+            'large': 32,
         },
     }
 

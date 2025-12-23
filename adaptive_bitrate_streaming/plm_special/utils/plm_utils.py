@@ -214,6 +214,7 @@ def load_plm_qwen3(model_path):
     model_config.output_attentions = True
     tokenizer = AutoTokenizer.from_pretrained(model_path)
     model = Qwen3Model.from_pretrained(model_path, config=model_config)
+    model.resize_token_embeddings(len(tokenizer))
     return model, tokenizer, model_config
 
 def add_special_tokens(model: PreTrainedModel,
