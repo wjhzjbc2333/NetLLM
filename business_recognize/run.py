@@ -201,11 +201,19 @@ def evaluate_test_f1(args, model, test_loader, test_df_original, le):
         'matched_rows': len(true_labels)
     }
 
-def adapt(args, model, train_loader, val_loader, test_loader, test_df_original, le, checkpoint_dir, best_model_dir, num_classes):
+def adapt(args, model, train_loader, val_loader, test_loader, test_df_original, le, checkpoint_dir, best_model_dir, num_classes, class_weights=None):
     """Training function"""
     optimizer = AdamW(model.parameters(), lr=args.lr, weight_decay=args.weight_decay)
     lr_scheduler = LambdaLR(optimizer, lambda steps: min((steps + 1) / args.warmup_steps, 1))
-    loss_fn = CrossEntropyLoss()
+    
+    # Use weighted loss if class_weights is provided
+    if class_weights is not None:
+        class_weights = class_weights.to(args.device)
+        loss_fn = CrossEntropyLoss(weight=class_weights)
+        print(f'Using weighted CrossEntropyLoss with class weights on device {args.device}')
+    else:
+        loss_fn = CrossEntropyLoss()
+        print('Using standard CrossEntropyLoss (no class weights)')
 
     use_val = (val_loader is not None)
     best_val_acc = 0.0
@@ -448,6 +456,29 @@ def run(args):
     num_classes = len(le.classes_)
     print(f'Number of classes: {num_classes}')
 
+    # Calculate class weights for balanced loss (if needed)
+    class_weights = None
+    if args.use_weighted_loss:
+        print('Calculating balanced class weights...')
+        # Count samples per class in training data
+        label_counts = train_df['label'].value_counts()
+        total_samples = len(train_df)
+        
+        # Calculate balanced weights: weight[i] = total_samples / (num_classes * class_i_samples)
+        weights = []
+        for i, class_name in enumerate(le.classes_):
+            class_count = label_counts.get(class_name, 0)
+            if class_count > 0:
+                weight = total_samples / (num_classes * class_count)
+            else:
+                weight = 1.0  # Default weight if class has no samples
+            weights.append(weight)
+        
+        # Convert to tensor and move to device
+        class_weights = torch.tensor(weights, dtype=torch.float32)
+        print(f'Class weights calculated. Min: {class_weights.min():.4f}, Max: {class_weights.max():.4f}, Mean: {class_weights.mean():.4f}')
+        print(f'Class weights: {class_weights.tolist()[:5]}... (showing first 5)')
+
     # Split training data
     if args.use_val:
         train_df, val_df = train_test_split(train_df, test_size=0.1, random_state=42, stratify=train_df['label'])
@@ -502,7 +533,7 @@ def run(args):
             os.makedirs(checkpoint_dir, exist_ok=True)
             os.makedirs(best_model_dir, exist_ok=True)
             print('Starting training...')
-            adapt(args, model, train_loader, val_loader, test_loader, test_df_original, le, checkpoint_dir, best_model_dir, num_classes)
+            adapt(args, model, train_loader, val_loader, test_loader, test_df_original, le, checkpoint_dir, best_model_dir, num_classes, class_weights)
         
         if args.test:
             model_dir = args.model_dir if args.model_dir else best_model_dir
@@ -550,6 +581,7 @@ if __name__ == '__main__':
     parser.add_argument('--save-checkpoint-per-epoch', type=int, default=10, help='saving checkpoint per epoch')
     parser.add_argument('--grad-accum-steps', type=int, default=32, help='gradient accumulation steps')
     parser.add_argument('--use-val', action='store_true', help='use validation set')
+    parser.add_argument('--use-weighted-loss', action='store_true', help='use balanced class weights in CrossEntropyLoss')
     
     # Other settings
     parser.add_argument('--adapt', action='store_true', help='train model')

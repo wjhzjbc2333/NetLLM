@@ -80,12 +80,58 @@ class PayloadEncoder(nn.Module):
         payload_token = self.projector(features)  # (batch_size, llm_dim)
         return payload_token
 
+class AugmentedPayloadEncoder(nn.Module):
+    def __init__(self, llm_dim, max_len=256, hidden_dim=32, top_k_dist=5):
+        super(AugmentedPayloadEncoder, self).__init__()
+        '''1. CNN Encoder for origin payload'''
+        self.cnn_dim = 128
+        self.byte_embed = nn.Embedding(256, 32)
+        self.cnn = nn.Sequential(
+            nn.Conv1d(32, 64, kernel_size=3, padding=1),
+            nn.ReLU(),
+            nn.MaxPool1d(2),
+            nn.Conv1d(64, self.cnn_dim, kernel_size=3, padding=1),
+            nn.ReLU(),
+            nn.AdaptiveMaxPool1d(1) # Global Max Pooling -> (Batch, 128, 1)
+        )
+        '''2. MLP Encoder for payload length'''
+        self.len_dim = 32
+        self.len_mlp = nn.Sequential(
+            nn.Linear(1, self.len_dim),
+            nn.ReLU(),
+            nn.Linear(self.len_dim, self.len_dim)
+        )
+        '''3. Hamming distance encoder'''
+        self.dist_dim = 64
+        self.dist_mlp = nn.Sequential(
+            nn.Linear(top_k_dist, self.dist_dim),
+            nn.ReLU(),
+            nn.Linear(self.dist_dim, self.dist_dim)
+        )
+        '''4. Fusion & Projection'''
+        self.fusion_dim = self.cnn_dim + self.len_dim + self.dist_dim
+        self.fusion = nn.Sequential(
+            nn.Linear(self.fusion_dim, llm_dim),
+            nn.LayerNorm(llm_dim),
+            nn.GELU()
+        )
+
+    def forward(self, payload_seq, payload_len, hamming_dist):
+        x = self.byte_embed(payload_seq).permute(0, 2, 1)
+        feat_cnn = self.cnn(x).flatten(1)       #(B, 128)
+        feat_len = self.len_mlp(payload_len)    #(B, 32)
+        feat_dist = self.dist_mlp(hamming_dist) #(B, 64)
+        combined = torch.cat([feat_cnn, feat_len, feat_dist], dim=1)
+        out = self.fusion(combined)
+        return out
+
 class ClassifyPayloadEncoder(nn.Module):
     def __init__(self, llm_dim, hidden_dim=32):
         super(ClassifyPayloadEncoder, self).__init__()
-        self.classify_encoder = nn.Embedding(256, hidden_dim)
+        self.hidden_dim = 32
+        self.classify_encoder = nn.Embedding(256, self.hidden_dim)
         self.projector = nn.Sequential(
-            nn.Linear(hidden_dim * 1, llm_dim),
+            nn.Linear(self.hidden_dim * 1, llm_dim),
             nn.LayerNorm(llm_dim)
         )   
     
@@ -239,12 +285,21 @@ class IBRLLM(nn.Module):
         q_host = feature_host # (batch_size, llm_dim)
         
         token_prompt = self.instruction_embeddings.expand(batch_size, -1, -1)  # (batch_size, prompt_len, llm_dim)
+
+        '''try socket w/o align'''
+        # token_src = q_src.unsqueeze(1)
+        # token_dst = q_dst.unsqueeze(1)
         token_src = self.align_socket(q_src, tiny_vocab_emb, tiny_vocab_emb).unsqueeze(1)  # (batch_size, 1, llm_dim)
         token_dst = self.align_socket(q_dst, tiny_vocab_emb, tiny_vocab_emb).unsqueeze(1)  # (batch_size, 1, llm_dim)
+
+        '''try payload w/o align'''
         #token_payload = self.align_payload(q_payload, tiny_vocab_emb, tiny_vocab_emb).unsqueeze(1)  # (batch_size, 1, llm_dim)
         token_payload = q_payload.unsqueeze(1)  # Directly use payload token without alignment
-        token_host = self.align_host(q_host, tiny_vocab_emb, tiny_vocab_emb).unsqueeze(1)  # (batch_size, 1, llm_dim)
-        #token_host = q_host.unsqueeze(1)  # Directly use host token without alignment
+
+        '''try host w/o align'''
+        #token_host = self.align_host(q_host, tiny_vocab_emb, tiny_vocab_emb).unsqueeze(1)  # (batch_size, 1, llm_dim)
+        token_host = q_host.unsqueeze(1)  # Directly use host token without alignment
+
         llm_input = torch.cat([token_prompt, token_payload, token_src, token_dst, token_host], dim=1)  # (batch_size, total_seq_len, llm_dim)
 
         outputs = self.plm(inputs_embeds=llm_input)
@@ -255,7 +310,7 @@ class IBRLLM(nn.Module):
 
 if __name__ == "__main__":
     from utils import preprocess_payload
-    hex = '474554202f643f646e3d393932333062623963643331323339303430376436333134303564663334323526636c69656e7469703d312674746c3d312669643d3120485454502f312e310d0a557365722d4167656e743a2044616c76696b2f322e312e3020284c696e75783b20553b20416e64726f69642031303b204e583635394a204275696c642f514b51312e3230303430352e303032290d0a486f73743a203138322e3235342e3131362e3131370d0a436f6e6e656374696f6e3a204b6565702d416c6976650d0a4163636570742d456e636f64696e673a20677a69700d0a0d0a485454502f312e3120323030204f4b0d0a436f6e6e656374696f6e3a20636c6f73650d0a5365727665723a2048747470205365727665720d0a436f6e74656e742d547970653a20746578742f68746d6c0d0a436f6e74656e742d4c656e6774683a2039360d0a0d0a386662616533346637353538653061373134623935333863323639636164313836653332333632643237383864663037616262623632383034656166396139626631346537346535633465316431393064323861373039363266653830636230'
+    hex = '474554202f643f646e3d393932333062623963643331323339303430376436333134303564663334323526636c69656e7469703d312674746c3d312669643d3120485454502f312e310d0a557365722d4167656e743a 2044616c76696b2f322e312e3020284c696e75783b20553b20416e64726f69642031303b204e583635394a204275696c642f514b51312e3230303430352e303032290d0a486f73743a203138322e3235342e3131362e3131370d0a436f6e6e656374696f6e3a204b6565702d416c6976650d0a4163636570742d456e636f64696e673a20677a69700d0a0d0a485454502f312e3120323030204f4b0d0a436f6e6e656374696f6e3a20636c6f73650d0a5365727665723a2048747470205365727665720d0a436f6e74656e742d547970653a20746578742f68746d6c0d0a436f6e74656e742d4c656e6774683a2039360d0a0d0a386662616533346637353538653061373134623935333863323639636164313836653332333632643237383864663037616262623632383034656166396139626631346537346535633465316431393064323861373039363266653830636230'
     # Test with actual data loading shape: (batch_size, max_payload_len)
     payload_tensor = preprocess_payload(hex, max_len=256)
     print("Payload tensor shape (single sample):", payload_tensor.shape)  # Should be (256,)
