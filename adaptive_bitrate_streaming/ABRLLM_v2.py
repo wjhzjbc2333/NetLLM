@@ -13,6 +13,7 @@ from munch import Munch
 from plm_special.data.dataset import ExperienceDataset
 from pprint import pprint
 from plm_special.models.low_rank import peft_model
+from mamba_ssm import Mamba
 
 class ABRLLM(nn.Module):
     def __init__(self, args):
@@ -20,7 +21,7 @@ class ABRLLM(nn.Module):
         #Arguments prepare
         self.args = args
         self.llm_dim = args.llm_dim
-        self.tiny_vocab_size = 1000
+        self.tiny_vocab_size = 2048
         self.state_embedding_dim = args.state_embedding_dim
         self.device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
         self.state_use_self_attention = args.state_use_self_attention
@@ -29,13 +30,31 @@ class ABRLLM(nn.Module):
 
         #self.data_description = "Input sequence: [instruction, (return, state, action) for each timestep]. State: last bitrate, buffer size, past throughput, past download time, next chunk sizes, remaining chunks. Action: bitrate level (0-5). Return: cumulative reward."
         #self.task_description = "Predict bitrate level (0-5) for next chunk to maximize QoE."
-        self.data_description = "The data is a sequence of network states for adaptive bitrate streaming. Each state consists of six features: last bitrate, current buffer size, past k throughput measurements, past k download times, next chunk sizes for different bitrates, and remaining chunks to download."
-        self.task_description = "Based on the given network states, predict the optimal bitrate level for the next video chunk to maximize user Quality of Experience (QoE) by balancing video quality, rebuffering events, and smoothness of playback."
+        #self.data_description = "The data is a sequence of network states for adaptive bitrate streaming. Each state consists of six features: last bitrate, current buffer size, past k throughput measurements, past k download times, next chunk sizes for different bitrates, and remaining chunks to download."
+        #self.task_description = "Based on the given network states, predict the optimal bitrate level for the next video chunk to maximize user Quality of Experience (QoE) by balancing video quality, rebuffering events, and smoothness of playback."
+        self.data_description = (
+            "The input is a multi-modal sequence of networking telemetry. "
+            "Each timestep contains: 1) Cumulative Reward (Return), "
+            "2) Network State (including last bitrate, buffer level, throughput history, "
+            "download time history, upcoming chunk sizes, and remaining chunks), "
+            "and 3) Previous Bitrate Decision (Action)."
+        )
+        self.task_description = (
+            "As a Network Optimization Expert, your goal is to analyze these temporal patterns "
+            "and predict the optimal Bitrate Level (0 to 5) for the current segment. "
+            "Prioritize high resolution while strictly avoiding playback stalls and minimizing "
+            "frequent bitrate switching to ensure maximum user Quality of Experience (QoE)."
+        )
         self.max_length = args.max_length
 
         #load llm&tokenizer
         #self.plm, self.tokenizer, self.plm_config = load_plm_llama(args.model_path)
-        self.plm, self.tokenizer, self.plm_config = load_plm_qwen3(args.model_path)
+        if args.plm_type == 'llama':
+            self.plm, self.tokenizer, self.plm_config = load_plm_llama(args.model_path)
+        elif args.plm_type == 'qwen':
+            self.plm, self.tokenizer, self.plm_config = load_plm_qwen3(args.model_path)
+        else:
+            raise ValueError(f"Unsupported model_type: {args.model_type}")
 
         # Alias for compatibility with training framework
         self.plm_embed_size = self.llm_dim  # For compatibility with training framework
@@ -72,11 +91,12 @@ class ABRLLM(nn.Module):
         
         self.state_encoder = StateEncoder(
             self.state_use_self_attention, 
-            embed_dim=self.state_embedding_dim,
-            hidden_dim=self.state_attn_hidden_dim,
+            embed_dim=self.state_embedding_dim,     #256
+            hidden_dim=self.state_attn_hidden_dim,  #2048
             fusion_method=self.fusion_method
         ).to(self.device)
         self.alignment_layer = AlignmentLayer(alignment_input_dim, args.num_heads, args.key_dim, self.llm_dim).to(self.device)
+
         self.action_projection = nn.Linear(self.llm_dim, BITRATE_LEVELS).to(self.device)
         
         # modules_except_plm: used for saving/loading modules except PLM (for compatibility with training framework)
@@ -127,10 +147,15 @@ class ABRLLM(nn.Module):
         # Prepare instruction
         #TODO: fix instruction content
         instruction = (
-            f"<|start_prompt|>Data description: {self.data_description}"
-            f" Task description: {self.task_description} "
-            f" Input statistics: "
-            f"<|end_prompt|>"
+            "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n"
+            "You are a specialized AI assistant for Adaptive Bitrate (ABR) streaming optimization. "
+            "You will be provided with a sequence of vector embeddings representing (Reward, State, Action) tuples. "
+            "You must interpret these numerical patterns to make real-time bitrate decisions.<|eot_id|>"
+            "<|start_header_id|>user<|end_header_id|>\n\n"
+            f"CONTEXT: {self.data_description}\n"
+            f"OBJECTIVE: {self.task_description}\n"
+            "The embedded sequence follows immediately. Predict the optimal next action (0-5).<|eot_id|>"
+            "<|start_header_id|>assistant<|end_header_id|>\n\n"
         )
         instruction = self.tokenizer(instruction, return_tensors="pt", padding=True, truncation=True, max_length=2048).input_ids
         instruction_tokens = instruction.to(self.device).long()  # Ensure long dtype for embedding lookup
@@ -197,12 +222,27 @@ class ABRLLM(nn.Module):
         concated_embeddings = torch.cat(concated_embeddings, dim=1)  # (batch, total_seq_len, llm_dim), dtype: float32
 
         # LLM forward
-        output = self.plm(inputs_embeds=concated_embeddings).last_hidden_state
+        # Create attention mask if not provided
+        if attention_mask is None:
+            attention_mask = torch.ones((concated_embeddings.shape[0], concated_embeddings.shape[1]), 
+                                      dtype=torch.long, device=self.device)
+        
+        transformer_outputs = self.plm(
+            inputs_embeds=concated_embeddings,
+            attention_mask=attention_mask,
+            output_hidden_states=True
+        )
+        # Safely extract hidden states
+        if isinstance(transformer_outputs, dict):
+            output = transformer_outputs['hidden_states'][-1]
+        else:
+            output = transformer_outputs.hidden_states[-1] if hasattr(transformer_outputs, 'hidden_states') else transformer_outputs.last_hidden_state
         # output shape: (batch, total_seq_len, llm_dim)
         
         # Extract outputs corresponding to state positions for action prediction
         # State positions are at: instruction_len + 1, instruction_len + 4, instruction_len + 7, ...
         instruction_len = instruction_embeddings.shape[1]
+        #instruction_len = 0
         state_positions = [instruction_len + 1 + i * 3 for i in range(seq_len)]  # Positions of state embeddings
         state_outputs = output[:, state_positions, :]  # (batch, seq_len, llm_dim), dtype: float32
         
@@ -230,10 +270,15 @@ class ABRLLM(nn.Module):
         # Step 2: Prepare instruction prompt (same as forward)
         #TODO: fix instruction content
         instruction = (
-            f"<|start_prompt|>Data description: {self.data_description}"
-            f" Task description: {self.task_description} "
-            f" Input statistics: "
-            f"<|end_prompt|>"
+            "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n"
+            "You are a specialized AI assistant for Adaptive Bitrate (ABR) streaming optimization. "
+            "You will be provided with a sequence of vector embeddings representing (Reward, State, Action) tuples. "
+            "You must interpret these numerical patterns to make real-time bitrate decisions.<|eot_id|>"
+            "<|start_header_id|>user<|end_header_id|>\n\n"
+            f"CONTEXT: {self.data_description}\n"
+            f"OBJECTIVE: {self.task_description}\n"
+            "The embedded sequence follows immediately. Predict the optimal next action (0-5).<|eot_id|>"
+            "<|start_header_id|>assistant<|end_header_id|>\n\n"
         )
         instruction = self.tokenizer(instruction, return_tensors="pt", padding=True, truncation=True, max_length=2048).input_ids
         instruction_tokens = instruction.to(self.device).long()
@@ -309,14 +354,18 @@ class ABRLLM(nn.Module):
             attention_mask=attention_mask,
             output_hidden_states=True
         )
-        output = transformer_outputs['last_hidden_state'] if isinstance(transformer_outputs, dict) else transformer_outputs
+        # Safely extract hidden states (same as forward method)
+        if isinstance(transformer_outputs, dict):
+            output = transformer_outputs['hidden_states'][-1]
+        else:
+            output = transformer_outputs.hidden_states[-1] if hasattr(transformer_outputs, 'hidden_states') else transformer_outputs.last_hidden_state
         # output shape: (1, total_seq_len, llm_dim)
         
         # Step 8: Predict action from the last state position
         # The last position corresponds to the state embedding we just added
         logits_used = output[:, -1:, :]  # (1, 1, llm_dim) - use last position (state embedding), dtype: float32
         action_pred = self.action_projection(logits_used)  # (1, 1, BITRATE_LEVELS), dtype: float32
-        action_pred = action_pred.reshape(-1)  # (BITRATE_LEVELS,)
+        action_pred = action_pred.reshape(-1) # (BITRATE_LEVELS,)
         
         # Sample action
         bitrate, _ = self._sample(action_pred)
@@ -450,12 +499,19 @@ class StateEncoder(nn.Module):
 
         # Self-attention layer that fuses 6 features into a single hidden representation
         if self.use_self_attention:
-            self.state_attention = StateFeatureSelfAttention(
-                embed_dim=embed_dim, 
-                hidden_dim=self.hidden_dim,
-                num_heads=num_heads,
-                fusion_method=fusion_method
-            )
+            if fusion_method == 'mamba':
+                self.state_attention = MambaStateFeatureEncoder(
+                    embed_dim=embed_dim,
+                    hidden_dim=self.hidden_dim,
+                    d_state=16 # SSM 内部状态维度
+                )
+            else:
+                self.state_attention = StateFeatureSelfAttention(
+                    embed_dim=embed_dim, 
+                    hidden_dim=self.hidden_dim,
+                    num_heads=num_heads,
+                    fusion_method=fusion_method
+                )
 
 
     def forward(self, state, action_embedding=None, return_embedding=None):
@@ -686,6 +742,69 @@ class StateFeatureSelfAttention(nn.Module):
             return_emb = self.fusion_activation(return_emb)
             return_emb = return_emb.view(batch_size, seq_len, self.hidden_dim)
         
+        return state_emb, action_emb, return_emb
+
+class MambaStateFeatureEncoder(nn.Module):
+    def __init__(self, embed_dim, hidden_dim=None, d_state=16, d_conv=4, expand=2):
+        super().__init__()
+        self.embed_dim = embed_dim
+        self.hidden_dim = hidden_dim if hidden_dim is not None else embed_dim
+        
+        # 使用 Mamba 替代 Self-Attention
+        # d_model: 输入维度
+        # d_state: SSM 状态维度，类似于 RNN 的 hidden state 维度
+        # d_conv: 局部卷积核大小，用于捕捉相邻特征的局部相关性
+        self.mamba = Mamba(
+            d_model=embed_dim, 
+            d_state=d_state, 
+            d_conv=d_conv, 
+            expand=expand
+        )
+        
+        # 融合后的投影层，保持与原结构输出一致
+        self.state_fusion_proj = nn.Linear(embed_dim, self.hidden_dim)
+        self.action_proj = nn.Linear(embed_dim, self.hidden_dim)
+        self.return_proj = nn.Linear(embed_dim, self.hidden_dim)
+        
+        self.fusion_norm = nn.LayerNorm(self.hidden_dim)
+        self.fusion_activation = nn.LeakyReLU()
+
+    def forward(self, state_features, action_embedding=None, return_embedding=None):
+        # state_features: List of 6 tensors (batch_size, seq_len, embed_dim)
+        batch_size, seq_len = state_features[0].shape[:2]
+        
+        # 1. 组装序列：[F1, F2, F3, F4, F5, F6, Action, Return]
+        # 将特征堆叠为 (batch_size * seq_len, num_features, embed_dim)
+        all_feats = [f.reshape(-1, 1, self.embed_dim) for f in state_features]
+        if action_embedding is not None:
+            all_feats.append(action_embedding.reshape(-1, 1, self.embed_dim))
+        if return_embedding is not None:
+            all_feats.append(return_embedding.reshape(-1, 1, self.embed_dim))
+            
+        stacked_sequence = torch.cat(all_feats, dim=1) # (B*L, N, D)
+        
+        # 2. Mamba 线性扫描处理
+        # 相比 Attention，Mamba 随特征数量 N 呈线性增加复杂度
+        mamba_output = self.mamba(stacked_sequence) # (B*L, N, D)
+        
+        # 3. 提取与融合 (模拟原代码逻辑)
+        # 提取前 6 个属于 state 的特征进行平均池化（或加权）
+        state_enhanced = mamba_output[:, :6, :].mean(dim=1) 
+        state_emb = self.fusion_norm(self.fusion_activation(self.state_fusion_proj(state_enhanced)))
+        state_emb = state_emb.view(batch_size, seq_len, -1)
+        
+        # 提取 Action 和 Return 对应的位置
+        action_emb = None
+        if action_embedding is not None:
+            action_enhanced = mamba_output[:, 6, :]
+            action_emb = self.action_proj(action_enhanced).view(batch_size, seq_len, -1)
+            
+        return_emb = None
+        if return_embedding is not None:
+            return_idx = 7 if action_embedding is not None else 6
+            return_enhanced = mamba_output[:, return_idx, :]
+            return_emb = self.return_proj(return_enhanced).view(batch_size, seq_len, -1)
+
         return state_emb, action_emb, return_emb
 
 class AlignmentLayer(nn.Module):

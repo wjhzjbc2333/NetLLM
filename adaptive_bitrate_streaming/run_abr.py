@@ -10,6 +10,7 @@ from munch import Munch
 from torch.nn import CrossEntropyLoss
 from torch.optim import AdamW
 from torch.optim.lr_scheduler import LambdaLR
+from transformers import get_cosine_schedule_with_warmup
 
 from config import cfg
 from baseline_special.utils.utils import load_traces
@@ -20,7 +21,6 @@ from plm_special.test import test_on_env
 from plm_special.data.dataset import ExperienceDataset
 from plm_special.models.low_rank import peft_model
 from plm_special.utils.utils import set_random_seed
-from plm_special.utils.plm_utils import load_plm_llama
 from plm_special.utils.console_logger import ConsoleLogger
 from ABRLLM_v2 import ABRLLM
 
@@ -53,10 +53,28 @@ def adapt(args, model, exp_dataset, exp_dataset_info, eval_env_settings, checkpo
         lr=args.lr,
         weight_decay=args.weight_decay,
     )
-    lr_scheduler = LambdaLR(
-        optimizer,
-        lambda steps: min((steps + 1) / args.warmup_steps, 1)
+
+    steps_per_epoch = len(exp_dataset) // args.grad_accum_steps
+    if len(exp_dataset) % args.grad_accum_steps != 0:
+        steps_per_epoch += 1
+    total_training_steps = args.num_epochs * steps_per_epoch
+
+    lr_scheduler = get_cosine_schedule_with_warmup(
+        optimizer=optimizer,
+        num_warmup_steps=args.warmup_steps,
+        num_training_steps=total_training_steps
     )
+    
+    print(f'Learning rate schedule: Cosine Annealing with Warmup (from transformers)')
+    print(f'  Dataset size: {len(exp_dataset)}')
+    print(f'  Steps per epoch: {steps_per_epoch}')
+    print(f'  Total training steps: {total_training_steps}')
+    print(f'  Warmup steps: {args.warmup_steps}')
+
+    # lr_scheduler = LambdaLR(
+    #     optimizer,
+    #     lambda steps: min((steps + 1) / args.warmup_steps, 1)
+    # )
     loss_fn = CrossEntropyLoss()
     trainer = Trainer(args, model=model, optimizer=optimizer, exp_dataset=exp_dataset, loss_fn=loss_fn, device=args.device, lr_scheduler=lr_scheduler, 
                       grad_accum_steps=args.grad_accum_steps)
@@ -64,10 +82,25 @@ def adapt(args, model, exp_dataset, exp_dataset_info, eval_env_settings, checkpo
     target_return = exp_dataset_info.max_return * args.target_return_scale
     best_eval_return = 0.
 
+    # 准备loss记录文件路径（在训练开始前创建）
+    train_losses_path = os.path.join(checkpoint_dir, 'train_losses.txt')
+    
+    # 如果文件已存在，清空它（重新开始训练时）
+    if os.path.exists(train_losses_path):
+        open(train_losses_path, 'w').close()
+        print(f'Cleared existing loss file: {train_losses_path}')
+    
     total_train_losses = []
     for epoch in range(args.num_epochs):
         train_logs, train_losses = trainer.train_epoch()
         total_train_losses.extend(train_losses)
+        
+        # 每个epoch结束时，将loss追加到文件
+        with open(train_losses_path, 'a') as f:
+            for loss in train_losses:
+                f.write(f'{loss:.6f}\n')
+        print(f'Epoch {epoch} losses appended to: {train_losses_path}')
+        
         print('='* 20, f'Training Iteration #{epoch}', '=' * 20)
         print('>' * 10, 'Training Information:')
         pprint(train_logs)
@@ -93,9 +126,10 @@ def adapt(args, model, exp_dataset, exp_dataset_info, eval_env_settings, checkpo
             eval_logs['best_return'] = best_eval_return
             print('>' * 10, 'Evaluation Information')
             pprint(eval_logs)
-    # save training losses
-    train_losses_path = os.path.join(checkpoint_dir, 'train_losses.txt')
-    np.savetxt(train_losses_path, total_train_losses, fmt='%.6f', delimiter='\n')
+    
+    # 训练完成提示
+    print(f'All training losses have been saved incrementally to: {train_losses_path}')
+    print(f'Total number of loss records: {len(total_train_losses)}')
 
 
 def test(args, model, exp_dataset_info, env_settings, model_dir, result_dir, test_process_reward_fn):
@@ -252,7 +286,7 @@ if __name__ == '__main__':
     parser.add_argument('--key-dim', type=int, help='key dimension for alignment layer', default=128)
     parser.add_argument('--state-use-self-attention', action='store_true', help='use self-attention for state features (default: True, set via --no-state-use-self-attention to disable)')
     parser.add_argument('--state-attn-hidden-dim', type=int, help='hidden dimension for state self-attention fusion (defaults to 6 * state-embedding-dim)', default=None)
-    parser.add_argument('--fusion-method', type=str, choices=['weighted_sum', 'mean', 'concat'], default='weighted_sum', help='fusion method for state features')
+    parser.add_argument('--fusion-method', type=str, choices=['weighted_sum', 'mean', 'concat', 'mamba'], default='weighted_sum', help='fusion method for state features')
     
     # rl policy related settings
     parser.add_argument('--w', type=int, help='context window for learning return distribution', default=20)

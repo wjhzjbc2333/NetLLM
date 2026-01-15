@@ -1,3 +1,5 @@
+from transformers import AutoTokenizer, AutoConfig, AutoModelForCausalLM, LlamaConfig, LlamaModel
+import torch
 def check_tokens(model_path, words):
     from transformers import AutoTokenizer
     tokenizer = AutoTokenizer.from_pretrained(model_path)
@@ -22,7 +24,50 @@ def check_tokens(model_path, words):
             print(f"❌ Avoid: '{w}' splits into multiple tokens.")
         print("-" * 20)
 
-# 推荐测试列表 (方案一的变体)
-candidates = ["worst", "poor", "fair", "good", "great", "best"]
-# model_path 换成你的 llama3.2 路径
-check_tokens('./downloaded_plms/llama/large', candidates)
+def load_plm_llama(model_path):
+    pad_token = '[PAD]'
+
+    model_config = AutoConfig.from_pretrained(model_path)
+    #model_config.num_hidden_layers = 32
+    model_config.output_hidden_states = True
+    model_config.output_attentions = True
+
+    tokenizer = AutoTokenizer.from_pretrained(model_path)
+    tokenizer.add_special_tokens({'pad_token': pad_token})
+    tokenizer.pad_token = pad_token
+
+    model = AutoModelForCausalLM.from_pretrained(model_path, config=model_config)
+    model.resize_token_embeddings(len(tokenizer))
+
+    return model, tokenizer, model_config
+
+model, tokenizer, model_config = load_plm_llama("./downloaded_plms/llama/base")
+input = torch.randn(1, 10, model_config.hidden_size)
+outputs = model(inputs_embeds=input)
+# print(dir(model))
+# print(model.lm_head)
+print(outputs.hidden_states[-1].shape)  # 最后一层隐藏状态
+
+# def load_plm_llama(model_path):
+#     pad_token = '[PAD]'
+
+#     model_config = LlamaConfig.from_pretrained(model_path)
+#     #model_config.num_hidden_layers = 32
+#     model_config.output_hidden_states = True
+#     model_config.output_attentions = True
+
+#     tokenizer = AutoTokenizer.from_pretrained(model_path)
+#     tokenizer.add_special_tokens({'pad_token': pad_token})
+#     tokenizer.pad_token = pad_token
+
+#     model = LlamaModel.from_pretrained(model_path, config=model_config)
+#     model.resize_token_embeddings(len(tokenizer))
+
+#     return model, tokenizer, model_config
+
+# model, tokenizer, model_config = load_plm_llama("./downloaded_plms/llama/base")
+# inputs = tokenizer("Hello world!", return_tensors="pt")
+# outputs = model(**inputs)
+# print(dir(model))
+# #print(model.lm_head)
+# print(outputs.last_hidden_state.shape)  # 最后一层隐藏状态

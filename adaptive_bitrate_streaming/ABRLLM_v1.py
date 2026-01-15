@@ -523,10 +523,10 @@ if __name__ == "__main__":
     with open('artifacts/exp_pools/exp_pool.pkl', 'rb') as f:
         exp_pool = pickle.load(f)
     print(dir(exp_pool))
-    print("经验池大小:", len(exp_pool.states))
+    print("经验池大小:", len(exp_pool))
     # print("动作:", len(exp_pool.actions))
     # 打印前 5 条经验（假设每个字段是列表）
-    for i in range(50):
+    for i in range(1):
         print(f"经验 {i+1}:")
         print("状态:", exp_pool.states[i])
         print("动作:", exp_pool.actions[i])

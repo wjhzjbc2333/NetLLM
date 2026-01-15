@@ -42,7 +42,7 @@ def peft_model(plm, plm_type, rank, print_trainable=False, task_type=TaskType.FE
 
     config = LoraConfig(
         r=rank,
-        lora_alpha=32,
+        lora_alpha=256,
         target_modules=TARGET_MODULES[plm_type],
         lora_dropout=0.05,
         bias="none",

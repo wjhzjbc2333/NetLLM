@@ -3,18 +3,20 @@ python run_abr.py --adapt \
                   --frozen \
                   --state-use-self-attention \
                   --grad-accum-steps 32 \
-                  --seed 43 \
-                  --plm-type qwen \
-                  --plm-size large \
+                  --seed 666 \
+                  --plm-type llama \
+                  --plm-size base \
                   --rank 128 \
                   --device cuda:0 \
-                  --state-feature-dim 256 \
+                  --state-feature-dim 512 \
                   --w 20 \
                   --gamma 1. \
-                  --lr 0.0001 \
-                  --warmup-steps 1 \
+                  --lr 5e-5 \
+                  --warmup-steps 200 \
                   --num-epochs 80 \
                   --eval-per-epoch 2 \
                   --target-return-scale 1 \
                   --save-checkpoint-per-epoch 40 \
-                  --state-attn-hidden-dim 1024
+                  --state-attn-hidden-dim 2048 \
+                  --target-return-scale 1.0
+                  #--fusion-method mamba 
